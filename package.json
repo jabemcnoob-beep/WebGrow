@@ -1,0 +1,21 @@
+{
+  "name": "webgrow",
+  "version": "1.0.0",
+  "private": true,
+  "description": "WebGrow — modern websites that grow your business. Built with Next.js + react-three-fiber, deployed on Cloudflare Pages.",
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint",
+    "pages:dev": "wrangler pages dev out --compatibility-date=2024-01-01"
+  },
+  "dependencies": {
+    "next": "^14.2.5",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "three": "^0.166.1",
+    "@react-three/fiber": "^8.16.8",
+    "@react-three/drei": "^9.108.3"
+  }
+}
