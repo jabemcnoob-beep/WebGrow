@@ -338,6 +338,20 @@ section { position: relative; padding-block: clamp(72px, 11vw, 140px); }
   z-index: 0;
 }
 .hero-inner { position: relative; z-index: 2; max-width: 720px; }
+/* keep hero copy readable over the moving 3D laptop */
+.hero-inner::before {
+  content: "";
+  position: absolute;
+  inset: -36px -64px;
+  z-index: -1;
+  background: radial-gradient(135% 115% at 22% 45%, rgba(7, 7, 11, 0.88), rgba(7, 7, 11, 0.55) 46%, rgba(7, 7, 11, 0) 78%);
+  border-radius: 40px;
+  pointer-events: none;
+}
+.hero-inner .eyebrow,
+.hero-inner h1,
+.hero-inner .lead { text-shadow: 0 2px 26px rgba(0, 0, 0, 0.7); }
+.hero-inner .lead { color: #e9e9f2; }
 .hero h1 { margin-bottom: 0.3em; }
 .hero .lead { font-size: clamp(1.1rem, 1.8vw, 1.35rem); margin-bottom: 2rem; }
 .hero-actions { display: flex; flex-wrap: wrap; gap: 0.9rem; }
