@@ -1,4 +1,4 @@
-import Head from "next/head";
+import Seo from "@/components/Seo";
 import Reveal from "@/components/Reveal";
 import CtaBand from "@/components/CtaBand";
 import { site, values, timeline, stats } from "@/data/site";
@@ -6,7 +6,7 @@ import { site, values, timeline, stats } from "@/data/site";
 export default function About() {
   return (
     <>
-      <Head><title>About — {site.name}</title></Head>
+      <Seo path="/about" />
 
       <section className="page-hero">
         <div className="container">
@@ -14,10 +14,11 @@ export default function About() {
             <span className="eyebrow">About {site.name}</span>
             <h1>The website your business <span className="gradient-text">deserves</span>.</h1>
             <p className="lead">
-              {site.name} is led by {site.founder} — a studio obsessed with one thing:
-              turning visitors into customers. We help restaurants, local businesses, and
-              brands worldwide with custom, personally-crafted websites — no templates, no
-              bloat, just design built to grow your business.
+              {site.name} is led by {site.founder} — a Verde Valley web design studio
+              obsessed with one thing: turning visitors into customers. We help restaurants
+              and local businesses across Arizona — Sedona, Cottonwood, Camp Verde and
+              beyond — with custom, personally-crafted websites. No templates, no bloat,
+              just design built to grow your business.
             </p>
           </Reveal>
         </div>

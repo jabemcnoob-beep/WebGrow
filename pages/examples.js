@@ -1,5 +1,5 @@
-import Head from "next/head";
 import Link from "next/link";
+import Seo from "@/components/Seo";
 import Reveal from "@/components/Reveal";
 import EffectsShowcase from "@/components/EffectsShowcase";
 import CtaBand from "@/components/CtaBand";
@@ -9,7 +9,7 @@ import { site, effects } from "@/data/site";
 export default function Examples() {
   return (
     <>
-      <Head><title>Examples &amp; Effects — {site.name}</title></Head>
+      <Seo path="/examples" />
 
       <section className="page-hero">
         <div className="container">

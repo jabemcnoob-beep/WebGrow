@@ -1,4 +1,51 @@
 import { Html, Head, Main, NextScript } from "next/document";
+import { site, seo, reviews } from "@/data/site";
+
+// Local-business structured data (JSON-LD) — emitted into every page's HTML
+// so Google can show rich results and understand WebGrow's service area.
+const structuredData = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "ProfessionalService",
+      "@id": `${site.url}/#business`,
+      name: site.name,
+      alternateName: "WebGrow Web Design",
+      description: seo.default.description,
+      url: site.url,
+      email: site.email,
+      telephone: site.phone,
+      image: `${site.url}/og-image.png`,
+      logo: `${site.url}/logo.png`,
+      priceRange: "$$",
+      founder: { "@type": "Person", name: site.founder },
+      knowsAbout: ["Web Design", "Website Development", "Local SEO", "Brand Identity"],
+      address: { "@type": "PostalAddress", addressRegion: site.regionCode, addressCountry: "US" },
+      areaServed: site.areaServed.map((a) => ({ "@type": "Place", name: a })),
+      geo: { "@type": "GeoCoordinates", latitude: site.geo.lat, longitude: site.geo.lng },
+      sameAs: Object.values(site.social),
+      aggregateRating: {
+        "@type": "AggregateRating",
+        ratingValue: "5.0",
+        reviewCount: String(reviews.length),
+        bestRating: "5",
+      },
+      review: reviews.map((r) => ({
+        "@type": "Review",
+        author: { "@type": "Person", name: r.name },
+        reviewRating: { "@type": "Rating", ratingValue: String(r.stars), bestRating: "5" },
+        reviewBody: r.quote,
+      })),
+    },
+    {
+      "@type": "WebSite",
+      "@id": `${site.url}/#website`,
+      url: site.url,
+      name: site.name,
+      publisher: { "@id": `${site.url}/#business` },
+    },
+  ],
+};
 
 export default function Document() {
   return (
@@ -12,11 +59,23 @@ export default function Document() {
           href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600;700&family=Space+Mono:wght@400;700&display=swap"
           rel="stylesheet"
         />
-        <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
         <meta name="theme-color" content="#07070b" />
-        <meta
-          name="description"
-          content="WebGrow builds modern, high-converting websites that grow your business — custom design, motion, and effects that make brands unforgettable."
+        <meta name="author" content={site.founder} />
+
+        {/* Local geo signals */}
+        <meta name="geo.region" content="US-AZ" />
+        <meta name="geo.placename" content="Verde Valley, Arizona" />
+        <meta name="geo.position" content={`${site.geo.lat};${site.geo.lng}`} />
+        <meta name="ICBM" content={`${site.geo.lat}, ${site.geo.lng}`} />
+
+        {/* Icons */}
+        <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+        <link rel="apple-touch-icon" href="/logo.png" />
+
+        {/* Structured data */}
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
         />
       </Head>
       <body>

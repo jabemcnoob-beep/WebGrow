@@ -1,4 +1,4 @@
-import Head from "next/head";
+import Seo from "@/components/Seo";
 import Reveal from "@/components/Reveal";
 import CtaBand from "@/components/CtaBand";
 import { site, reviews } from "@/data/site";
@@ -7,7 +7,7 @@ export default function Reviews() {
   const avg = (reviews.reduce((a, r) => a + r.stars, 0) / reviews.length).toFixed(1);
   return (
     <>
-      <Head><title>Reviews — {site.name}</title></Head>
+      <Seo path="/reviews" />
 
       <section className="page-hero">
         <div className="container">

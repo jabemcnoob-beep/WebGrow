@@ -8,9 +8,20 @@ export const site = {
   founder: "Remington White",
   tagline: "Website designs that grow your business.",
   // Short line used in the footer / meta.
-  blurb: "Crafting high-performance websites for restaurants, local businesses, and brands worldwide.",
+  blurb: "Custom websites for restaurants and local businesses across Arizona's Verde Valley — and beyond.",
   email: "webgrow.app@gmail.com",
   phone: "928-679-0973",
+  // ---- canonical domain (used for SEO: canonical URLs, sitemap, OG tags) ----
+  url: "https://webgrow.app",
+  // ---- local SEO ----
+  region: "Arizona",
+  regionCode: "AZ",
+  area: "Verde Valley, Arizona",
+  areaServed: [
+    "Verde Valley", "Sedona", "Cottonwood", "Camp Verde",
+    "Clarkdale", "Cornville", "Rimrock", "Jerome", "Arizona",
+  ],
+  geo: { lat: 34.7, lng: -111.9 }, // approximate Verde Valley center
   social: {
     instagram: "https://instagram.com/webgrow",
     x: "https://x.com/webgrow",
@@ -276,6 +287,49 @@ export const pricing = {
 };
 
 export const faqsHome = pricing.faqs.slice(0, 4);
+
+// ------------------------------------------------------------
+// SEO — per-page titles + meta descriptions (local, Verde Valley AZ focus).
+// Keep titles ~60 chars and descriptions ~150-160 chars. Keyed by route path.
+// ------------------------------------------------------------
+export const seo = {
+  default: {
+    title: "WebGrow — Verde Valley & Arizona Web Design",
+    description: "WebGrow builds fast, modern, conversion-focused websites for restaurants and local businesses across Arizona's Verde Valley — Sedona, Cottonwood, Camp Verde & beyond.",
+  },
+  "/": {
+    title: "Verde Valley Web Design That Grows Your Business | WebGrow",
+    description: "Custom websites for Verde Valley & Arizona local businesses. WebGrow turns your site into your #1 revenue driver with conversion-focused design, by Remington White.",
+  },
+  "/about": {
+    title: "About WebGrow | Web Designer in the Verde Valley, AZ",
+    description: "Meet WebGrow — a Verde Valley web design studio led by Remington White, building custom, high-converting websites for local Arizona businesses.",
+  },
+  "/services": {
+    title: "Web Design, SEO & Local Marketing | WebGrow Verde Valley",
+    description: "Custom web design, lightning-fast performance, local SEO, branding and end-to-end delivery for Verde Valley & Arizona businesses — all from one studio.",
+  },
+  "/examples": {
+    title: "Website Effects & Examples | WebGrow Arizona",
+    description: "See the modern motion, 3D and cursor effects WebGrow can build into your Verde Valley business website. Live, interactive demos you can try right now.",
+  },
+  "/work": {
+    title: "Our Work — Arizona Websites We've Built | WebGrow",
+    description: "Real websites WebGrow built for Verde Valley & Arizona businesses — The Handy Firemen, Almost Sedona, Best Clean Pros and more. See the results.",
+  },
+  "/reviews": {
+    title: "Reviews — What Verde Valley Clients Say | WebGrow",
+    description: "5-star reviews from Arizona business owners who grew with WebGrow. Honest, hands-on web design and SEO for the Verde Valley and beyond.",
+  },
+  "/pricing": {
+    title: "Website Pricing for Arizona Businesses | WebGrow",
+    description: "Transparent web design pricing for Verde Valley & Arizona businesses — custom websites from $500, plus SEO & launch packages. No hidden fees.",
+  },
+  "/contact": {
+    title: "Get a Free Quote — Verde Valley Web Design | WebGrow",
+    description: "Tell us about your Verde Valley or Arizona business and Remington will personally craft a free, no-obligation website quote. Serving Sedona, Cottonwood & more.",
+  },
+};
 
 // ------------------------------------------------------------
 // POST-PURCHASE "What happens next" pages, keyed by plan id.

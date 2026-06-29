@@ -1,5 +1,5 @@
-import Head from "next/head";
 import Link from "next/link";
+import Seo from "@/components/Seo";
 import Reveal from "@/components/Reveal";
 import CtaBand from "@/components/CtaBand";
 import { Arrow, Check } from "@/components/Icon";
@@ -8,7 +8,7 @@ import { site, services } from "@/data/site";
 export default function Services() {
   return (
     <>
-      <Head><title>Services — {site.name}</title></Head>
+      <Seo path="/services" />
 
       <section className="page-hero">
         <div className="container">

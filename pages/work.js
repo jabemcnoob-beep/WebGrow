@@ -1,4 +1,4 @@
-import Head from "next/head";
+import Seo from "@/components/Seo";
 import Reveal from "@/components/Reveal";
 import CtaBand from "@/components/CtaBand";
 import WorkCard from "@/components/WorkCard";
@@ -7,7 +7,7 @@ import { site, work } from "@/data/site";
 export default function Work() {
   return (
     <>
-      <Head><title>Work — {site.name}</title></Head>
+      <Seo path="/work" />
 
       <section className="page-hero">
         <div className="container">

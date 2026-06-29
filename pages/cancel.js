@@ -1,11 +1,11 @@
-import Head from "next/head";
+import Seo from "@/components/Seo";
 import Link from "next/link";
 import { site } from "@/data/site";
 
 export default function Cancel() {
   return (
     <>
-      <Head><title>Checkout cancelled — {site.name}</title></Head>
+      <Seo title={`Checkout cancelled — ${site.name}`} description="Your checkout was cancelled." noindex />
       <section className="page-hero center" style={{ minHeight: "70vh", display: "grid", placeItems: "center" }}>
         <div className="container">
           <h1 style={{ marginInline: "auto" }}>No worries.</h1>

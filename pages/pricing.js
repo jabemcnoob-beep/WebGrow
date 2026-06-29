@@ -1,5 +1,5 @@
-import Head from "next/head";
 import Link from "next/link";
+import Seo from "@/components/Seo";
 import Reveal from "@/components/Reveal";
 import CtaBand from "@/components/CtaBand";
 import { Check, Arrow } from "@/components/Icon";
@@ -8,7 +8,7 @@ import { site, pricing } from "@/data/site";
 export default function Pricing() {
   return (
     <>
-      <Head><title>Pricing — {site.name}</title></Head>
+      <Seo path="/pricing" />
 
       <section className="page-hero center">
         <div className="container">

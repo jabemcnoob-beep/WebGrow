@@ -1,6 +1,6 @@
 import { useState } from "react";
-import Head from "next/head";
 import { useRouter } from "next/router";
+import Seo from "@/components/Seo";
 import Reveal from "@/components/Reveal";
 import { Arrow } from "@/components/Icon";
 import { site } from "@/data/site";
@@ -25,7 +25,7 @@ export default function Contact() {
 
   return (
     <>
-      <Head><title>Get a Free Quote — {site.name}</title></Head>
+      <Seo path="/contact" />
 
       <section className="page-hero">
         <div className="container">

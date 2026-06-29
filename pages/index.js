@@ -1,7 +1,7 @@
 import { useEffect, useRef } from "react";
-import Head from "next/head";
 import Link from "next/link";
 import dynamic from "next/dynamic";
+import Seo from "@/components/Seo";
 import Reveal from "@/components/Reveal";
 import CtaBand from "@/components/CtaBand";
 import WorkCard from "@/components/WorkCard";
@@ -51,9 +51,7 @@ export default function Home() {
 
   return (
     <>
-      <Head>
-        <title>WebGrow — Modern websites that grow your business</title>
-      </Head>
+      <Seo path="/" />
 
       {/* ---------------- HERO: scroll-driven exploding laptop ---------------- */}
       <div className="explode-stage" ref={stageRef}>
@@ -69,9 +67,10 @@ export default function Home() {
                 Website designs that <span className="gradient-text">grow</span> your business.
               </h1>
               <p className="lead">
-                {site.name} helps restaurants, local businesses, and brands worldwide turn
-                their website into their #1 revenue driver — with precision-crafted design
-                that converts visitors into loyal customers. Scroll to watch one come to life.
+                {site.name} helps restaurants and local businesses across Arizona's Verde
+                Valley — and beyond — turn their website into their #1 revenue driver with
+                precision-crafted design that converts visitors into loyal customers.
+                Scroll to watch one come to life.
               </p>
               <div className="hero-actions">
                 <Link href="/contact" className="btn btn-primary btn-lg">

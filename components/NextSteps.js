@@ -1,5 +1,5 @@
-import Head from "next/head";
 import Link from "next/link";
+import Seo from "@/components/Seo";
 import Reveal from "@/components/Reveal";
 import { Arrow, Check } from "@/components/Icon";
 import { site, nextSteps } from "@/data/site";
@@ -22,7 +22,7 @@ export default function NextSteps({ planKey }) {
 
   return (
     <>
-      <Head><title>What happens next — {data.plan} — {site.name}</title></Head>
+      <Seo title={`What happens next — ${data.plan} — ${site.name}`} description={`Your next steps after purchasing the ${data.plan} from ${site.name}.`} noindex />
 
       <section className="page-hero">
         <div className="container" style={{ maxWidth: 840 }}>

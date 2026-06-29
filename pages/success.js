@@ -1,11 +1,11 @@
-import Head from "next/head";
+import Seo from "@/components/Seo";
 import Link from "next/link";
 import { site } from "@/data/site";
 
 export default function Success() {
   return (
     <>
-      <Head><title>Payment received — {site.name}</title></Head>
+      <Seo title={`Payment received — ${site.name}`} description="Thank you for your purchase." noindex />
       <section className="page-hero center" style={{ minHeight: "70vh", display: "grid", placeItems: "center" }}>
         <div className="container">
           <div className="ic" style={{ width: 64, height: 64, fontSize: "2rem", marginInline: "auto", borderRadius: 18 }}>✓</div>

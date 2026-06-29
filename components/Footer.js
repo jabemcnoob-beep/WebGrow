@@ -43,7 +43,7 @@ export default function Footer() {
 
         <div className="footer-bottom">
           <span>© {new Date().getFullYear()} {site.name}. All rights reserved.</span>
-          <span>Hand-coded · Edge-deployed on Cloudflare</span>
+          <span>Proudly serving Sedona, Cottonwood, Camp Verde &amp; the Verde Valley, Arizona.</span>
         </div>
       </div>
     </footer>
