@@ -294,40 +294,49 @@ export const faqsHome = pricing.faqs.slice(0, 4);
 // ------------------------------------------------------------
 export const seo = {
   default: {
-    title: "WebGrow — Verde Valley & Arizona Web Design",
-    description: "WebGrow builds fast, modern, conversion-focused websites for restaurants and local businesses across Arizona's Verde Valley — Sedona, Cottonwood, Camp Verde & beyond.",
+    title: "WebGrow | Verde Valley & Arizona Web Design",
+    description: "WebGrow builds fast, modern, conversion-focused websites for restaurants and local businesses across Arizona's Verde Valley — Sedona, Cottonwood & beyond.",
+    image: "/og-image.png",
   },
   "/": {
     title: "Verde Valley Web Design That Grows Your Business | WebGrow",
-    description: "Custom websites for Verde Valley & Arizona local businesses. WebGrow turns your site into your #1 revenue driver with conversion-focused design, by Remington White.",
+    description: "Custom, high-converting websites for Verde Valley & Arizona businesses. WebGrow makes your site your #1 salesperson with modern design and local SEO. Free quote.",
+    image: "/og-image.png",
   },
   "/about": {
-    title: "About WebGrow | Web Designer in the Verde Valley, AZ",
-    description: "Meet WebGrow — a Verde Valley web design studio led by Remington White, building custom, high-converting websites for local Arizona businesses.",
+    title: "Verde Valley Web Designer | About WebGrow, AZ",
+    description: "Meet Remington White of WebGrow — a Verde Valley web designer crafting custom, conversion-focused websites for restaurants and local businesses across Arizona.",
+    image: "/og-about.png",
   },
   "/services": {
-    title: "Web Design, SEO & Local Marketing | WebGrow Verde Valley",
-    description: "Custom web design, lightning-fast performance, local SEO, branding and end-to-end delivery for Verde Valley & Arizona businesses — all from one studio.",
+    title: "Web Design, Local SEO & Branding | WebGrow Verde Valley",
+    description: "From custom design and local SEO to branding, payments and launch, WebGrow handles everything Verde Valley and Arizona businesses need to grow online.",
+    image: "/og-services.png",
   },
   "/examples": {
-    title: "Website Effects & Examples | WebGrow Arizona",
-    description: "See the modern motion, 3D and cursor effects WebGrow can build into your Verde Valley business website. Live, interactive demos you can try right now.",
+    title: "Website Effects, 3D & Live Demos | WebGrow Arizona",
+    description: "Explore the 3D, motion and cursor effects WebGrow can build into your site — live, interactive demos showing what's possible for your Arizona business.",
+    image: "/og-examples.png",
   },
   "/work": {
-    title: "Our Work — Arizona Websites We've Built | WebGrow",
-    description: "Real websites WebGrow built for Verde Valley & Arizona businesses — The Handy Firemen, Almost Sedona, Best Clean Pros and more. See the results.",
+    title: "Our Work | Verde Valley & Arizona Websites — WebGrow",
+    description: "See real websites WebGrow built for Arizona businesses — The Handy Firemen, Almost Sedona and Best Clean Pros — and the growth that followed. View our work.",
+    image: "/og-work.png",
   },
   "/reviews": {
-    title: "Reviews — What Verde Valley Clients Say | WebGrow",
-    description: "5-star reviews from Arizona business owners who grew with WebGrow. Honest, hands-on web design and SEO for the Verde Valley and beyond.",
+    title: "Reviews | Verde Valley Web Design Clients — WebGrow",
+    description: "Read 5-star reviews from Arizona business owners who grew with WebGrow. Honest, hands-on web design and local SEO for the Verde Valley and beyond.",
+    image: "/og-reviews.png",
   },
   "/pricing": {
-    title: "Website Pricing for Arizona Businesses | WebGrow",
-    description: "Transparent web design pricing for Verde Valley & Arizona businesses — custom websites from $500, plus SEO & launch packages. No hidden fees.",
+    title: "Web Design Pricing for Arizona Businesses | WebGrow",
+    description: "Transparent web design pricing for Verde Valley and Arizona businesses — custom sites from $500, plus SEO and launch packages. No templates, no hidden fees.",
+    image: "/og-pricing.png",
   },
   "/contact": {
-    title: "Get a Free Quote — Verde Valley Web Design | WebGrow",
-    description: "Tell us about your Verde Valley or Arizona business and Remington will personally craft a free, no-obligation website quote. Serving Sedona, Cottonwood & more.",
+    title: "Get a Free Website Quote | Verde Valley, AZ — WebGrow",
+    description: "Tell WebGrow about your Verde Valley or Arizona business and Remington will craft a free, no-obligation website quote. Serving Sedona, Cottonwood & beyond.",
+    image: "/og-contact.png",
   },
 };
 

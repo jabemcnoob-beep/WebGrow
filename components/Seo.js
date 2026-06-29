@@ -11,9 +11,8 @@ export default function Seo({ path = "/", title, description, image, noindex = f
   const pageTitle = title || meta.title;
   const pageDesc = description || meta.description;
   const url = site.url + (path === "/" ? "/" : path.endsWith("/") ? path : path + "/");
-  const ogImage = (image || "/og-image.png").startsWith("http")
-    ? image
-    : site.url + (image || "/og-image.png");
+  const imgPath = image || meta.image || "/og-image.png";
+  const ogImage = imgPath.startsWith("http") ? imgPath : site.url + imgPath;
 
   return (
     <Head>
