@@ -68,9 +68,12 @@ export default function Document() {
         <meta name="geo.position" content={`${site.geo.lat};${site.geo.lng}`} />
         <meta name="ICBM" content={`${site.geo.lat}, ${site.geo.lng}`} />
 
-        {/* Icons */}
-        <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
-        <link rel="apple-touch-icon" href="/logo.png" />
+        {/* Icons — WebGrow logo favicon */}
+        <link rel="icon" href="/favicon.ico" sizes="any" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png" />
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16.png" />
+        <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+        <link rel="manifest" href="/site.webmanifest" />
 
         {/* Structured data */}
         <script
