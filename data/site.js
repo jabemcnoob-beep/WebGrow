@@ -257,7 +257,6 @@ export const pricing = {
         { label: "Everything in Custom Website", on: true },
         { label: "Full on-page & local SEO", on: true },
         { label: "Hands-on launch & domain setup", on: true },
-        { label: "Google Business + Maps integration", on: true },
         { label: "Performance & speed tuning", on: true },
       ],
     },
