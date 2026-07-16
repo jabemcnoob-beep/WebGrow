@@ -1,0 +1,14 @@
+{
+  // Cloudflare config for the auto-deploy (Workers Builds → GitHub).
+  // This is a STATIC site: `npm run build` produces ./out, and Cloudflare
+  // serves it as static assets — no Next.js server / OpenNext adapter needed.
+  //
+  // Cloudflare dashboard build settings must be:
+  //   Build command:  npm run build
+  //   Deploy command: npx wrangler deploy
+  "name": "webgrow-site",
+  "compatibility_date": "2024-11-01",
+  "assets": {
+    "directory": "./out"
+  }
+}
