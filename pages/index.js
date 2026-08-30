@@ -5,6 +5,7 @@ import Seo from "@/components/Seo";
 import Reveal from "@/components/Reveal";
 import CtaBand from "@/components/CtaBand";
 import WorkCard from "@/components/WorkCard";
+import ReviewCard from "@/components/ReviewCard";
 import { Arrow } from "@/components/Icon";
 import { site, stats, services, effects, work, reviews, marquee, founderQuote } from "@/data/site";
 
@@ -185,17 +186,7 @@ export default function Home() {
           </div>
           <div className="grid grid-3">
             {reviews.slice(0, 3).map((r, i) => (
-              <Reveal key={r.name} className="card review-card" delay={i * 70}>
-                <div className="stars">{"★".repeat(r.stars)}</div>
-                <blockquote>“{r.quote}”</blockquote>
-                <div className="who">
-                  <div className="avatar">{r.name[0]}</div>
-                  <div>
-                    <div className="name">{r.name}</div>
-                    <div className="role">{r.role}</div>
-                  </div>
-                </div>
-              </Reveal>
+              <ReviewCard key={r.name} review={r} delay={i * 70} />
             ))}
           </div>
         </div>

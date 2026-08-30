@@ -188,6 +188,13 @@ export const work = [
 export const reviews = [
   {
     stars: 5,
+    quote: "Jabe was easy to reach, worked quickly, and delivered an awesome website. He exceeded all expectations!",
+    name: "Cole Sennett",
+    role: "AZ Wildfire Mitigation",
+    url: "https://www.azwildfiremitigation.com",
+  },
+  {
+    stars: 5,
     quote: "I hired WebGrow to completely revamp the website for my growing small construction business in Northern Arizona. From the very first conversation, Remi was outstanding. He worked tirelessly to deliver a premium, professional website that truly represents my business — clean, modern, and built to convert visitors into leads. Remi guided me through every step with clear communication and expert attention to detail, handling everything from design and functionality to properly connecting my domain, making the entire experience seamless. His dedication and responsiveness went above and beyond what I expected. I'm already looking forward to the positive impact this new site will have on my lead flow and job opportunities. I highly recommend Remi and WebGrow to any business owner looking for a high-quality website and exceptional service.",
     name: "Mackenzie White",
     role: "Owner, The Handy Firemen",

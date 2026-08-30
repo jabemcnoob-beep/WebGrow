@@ -645,6 +645,9 @@ section { position: relative; padding-block: clamp(72px, 11vw, 140px); }
 .review-card .avatar { width: 42px; height: 42px; border-radius: 50%; background: var(--grad); display: grid; place-items: center; font-family: var(--font-display); font-weight: 700; color: #0a0a12; }
 .review-card .who .name { font-weight: 600; font-size: 0.95rem; }
 .review-card .who .role { font-size: 0.82rem; color: var(--faint); }
+.review-card .who .review-link { color: var(--accent-2); transition: color 0.2s ease; }
+.review-card .who .review-link:hover { color: var(--text); }
+.review-card .who .review-link span { font-size: 0.9em; }
 
 /* ============================================================
    ABOUT

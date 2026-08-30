@@ -1,6 +1,7 @@
 import Seo from "@/components/Seo";
 import Reveal from "@/components/Reveal";
 import CtaBand from "@/components/CtaBand";
+import ReviewCard from "@/components/ReviewCard";
 import { site, reviews } from "@/data/site";
 
 export default function Reviews() {
@@ -26,17 +27,7 @@ export default function Reviews() {
         <div className="container">
           <div className="grid grid-3">
             {reviews.map((r, i) => (
-              <Reveal key={r.name} className="card review-card" delay={i * 60}>
-                <div className="stars">{"★".repeat(r.stars)}</div>
-                <blockquote>“{r.quote}”</blockquote>
-                <div className="who">
-                  <div className="avatar">{r.name[0]}</div>
-                  <div>
-                    <div className="name">{r.name}</div>
-                    <div className="role">{r.role}</div>
-                  </div>
-                </div>
-              </Reveal>
+              <ReviewCard key={r.name} review={r} delay={i * 60} />
             ))}
           </div>
         </div>
