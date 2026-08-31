@@ -4,6 +4,7 @@ import dynamic from "next/dynamic";
 import Seo from "@/components/Seo";
 import Reveal from "@/components/Reveal";
 import CtaBand from "@/components/CtaBand";
+import DeviceShowcase from "@/components/DeviceShowcase";
 import WorkCard from "@/components/WorkCard";
 import ReviewCard from "@/components/ReviewCard";
 import { Arrow } from "@/components/Icon";
@@ -99,6 +100,9 @@ export default function Home() {
           ))}
         </div>
       </div>
+
+      {/* ---------------- DEVICE SHOWCASE: pinned laptop + phone ---------------- */}
+      <DeviceShowcase />
 
       {/* ---------------- STATS ---------------- */}
       <section>

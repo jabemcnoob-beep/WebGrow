@@ -59,7 +59,7 @@ export default function Document() {
           href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600;700&family=Space+Mono:wght@400;700&display=swap"
           rel="stylesheet"
         />
-        <meta name="theme-color" content="#07070b" />
+        <meta name="theme-color" content="#050505" />
         <meta name="author" content={site.founder} />
 
         {/* Local geo signals */}

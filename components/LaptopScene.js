@@ -15,13 +15,13 @@ function makeSiteTexture(hue) {
   const x = c.getContext("2d");
 
   const g = x.createLinearGradient(0, 0, 320, 220);
-  g.addColorStop(0, `hsl(${hue}, 65%, 17%)`);
-  g.addColorStop(1, `hsl(${(hue + 46) % 360}, 70%, 9%)`);
+  g.addColorStop(0, `hsl(${hue}, 60%, 10%)`);
+  g.addColorStop(1, `hsl(${(hue + 18) % 360}, 55%, 4%)`);
   x.fillStyle = g; x.fillRect(0, 0, 320, 220);
 
   // nav bar
   x.fillStyle = "rgba(255,255,255,0.07)"; x.fillRect(0, 0, 320, 30);
-  x.fillStyle = `hsl(${hue}, 90%, 66%)`;
+  x.fillStyle = `hsl(${hue}, 95%, 62%)`;
   x.beginPath(); x.arc(18, 15, 6, 0, Math.PI * 2); x.fill();
   x.fillStyle = "rgba(255,255,255,0.45)";
   for (let i = 0; i < 4; i++) x.fillRect(214 + i * 24, 12, 16, 6);
@@ -30,7 +30,7 @@ function makeSiteTexture(hue) {
   x.fillStyle = "rgba(255,255,255,0.9)";
   x.fillRect(22, 60, 170, 16);
   x.fillRect(22, 84, 116, 16);
-  x.fillStyle = `hsl(${hue}, 90%, 62%)`;
+  x.fillStyle = `hsl(${hue}, 95%, 58%)`;
   x.fillRect(22, 112, 76, 22);
 
   // hero visual
@@ -48,16 +48,16 @@ function makeSiteTexture(hue) {
   return tex;
 }
 
-// final "exploded" layout for the template cards
+// final "exploded" layout for the template cards — all hues in the pink family
 const CARD_LAYOUT = [
-  { end: [-3.4, 2.2, 0.6], rot: [0.05, 0.5, 0.12], hue: 258 },
-  { end: [-2.1, 3.1, -0.4], rot: [-0.05, 0.28, -0.08], hue: 190 },
-  { end: [0.0, 3.5, 0.3], rot: [0.04, 0.0, 0.0], hue: 318 },
-  { end: [2.1, 3.05, -0.4], rot: [-0.05, -0.28, 0.08], hue: 168 },
-  { end: [3.4, 2.15, 0.6], rot: [0.05, -0.5, -0.12], hue: 268 },
-  { end: [-2.9, 0.9, 1.4], rot: [0.1, 0.42, 0.1], hue: 210 },
-  { end: [2.9, 0.85, 1.4], rot: [0.1, -0.42, -0.1], hue: 300 },
-  { end: [0.0, 1.5, 1.9], rot: [0.14, 0.0, 0.0], hue: 240 },
+  { end: [-3.4, 2.2, 0.6], rot: [0.05, 0.5, 0.12], hue: 330 },
+  { end: [-2.1, 3.1, -0.4], rot: [-0.05, 0.28, -0.08], hue: 316 },
+  { end: [0.0, 3.5, 0.3], rot: [0.04, 0.0, 0.0], hue: 336 },
+  { end: [2.1, 3.05, -0.4], rot: [-0.05, -0.28, 0.08], hue: 350 },
+  { end: [3.4, 2.15, 0.6], rot: [0.05, -0.5, -0.12], hue: 322 },
+  { end: [-2.9, 0.9, 1.4], rot: [0.1, 0.42, 0.1], hue: 344 },
+  { end: [2.9, 0.85, 1.4], rot: [0.1, -0.42, -0.1], hue: 310 },
+  { end: [0.0, 1.5, 1.9], rot: [0.14, 0.0, 0.0], hue: 338 },
 ];
 
 function TemplateCard({ data, index, progressRef }) {
@@ -97,7 +97,7 @@ function TemplateCard({ data, index, progressRef }) {
 function Laptop({ progressRef }) {
   const rig = useRef();
   const hinge = useRef();
-  const screenTex = useMemo(() => makeSiteTexture(258), []);
+  const screenTex = useMemo(() => makeSiteTexture(330), []);
 
   useFrame((state) => {
     const p = progressRef.current ?? 0;
@@ -127,7 +127,7 @@ function Laptop({ progressRef }) {
     <group ref={rig} position={[0, -0.4, 0]}>
       {/* base / keyboard deck */}
       <RoundedBox args={[3.4, 0.16, 2.3]} radius={0.07} smoothness={4} position={[0, 0, 0]}>
-        <meshStandardMaterial color="#c9ccd6" metalness={0.85} roughness={0.32} />
+        <meshStandardMaterial color="#1c1c20" metalness={0.85} roughness={0.35} />
       </RoundedBox>
       {/* keyboard inset */}
       <mesh position={[0, 0.085, 0.18]} rotation={[-Math.PI / 2, 0, 0]}>
@@ -144,7 +144,7 @@ function Laptop({ progressRef }) {
       <group ref={hinge} position={[0, 0.08, -1.15]} rotation={[1.52, 0, 0]}>
         <group position={[0, 1.05, 0]}>
           <RoundedBox args={[3.4, 2.1, 0.12]} radius={0.07} smoothness={4}>
-            <meshStandardMaterial color="#c9ccd6" metalness={0.85} roughness={0.32} />
+            <meshStandardMaterial color="#1c1c20" metalness={0.85} roughness={0.35} />
           </RoundedBox>
           {/* glowing screen */}
           <mesh position={[0, 0, 0.067]}>
@@ -175,10 +175,10 @@ function Scene({ progressRef }) {
 
   return (
     <>
-      <ambientLight intensity={0.9} color="#cfe0ff" />
-      <directionalLight position={[4, 6, 5]} intensity={2.2} color="#ffffff" />
-      <directionalLight position={[-5, 2, -3]} intensity={0.7} color="#7c5cff" />
-      <pointLight position={[0, 1.5, 3]} intensity={1.2} color="#22d3ee" />
+      <ambientLight intensity={0.9} color="#ffffff" />
+      <directionalLight position={[4, 6, 5]} intensity={2.4} color="#ffffff" />
+      <directionalLight position={[-5, 2, -3]} intensity={1.1} color="#ff1f8f" />
+      <pointLight position={[0, 1.5, 3]} intensity={1.4} color="#ff5cab" />
       <group ref={groupRef}>
         <Laptop progressRef={progressRef} />
         {CARD_LAYOUT.map((data, i) => (
