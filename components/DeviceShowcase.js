@@ -149,7 +149,7 @@ export default function DeviceShowcase() {
       <div className="showcase-sticky">
         <div className="showcase-head">
           <span className="eyebrow" style={{ justifyContent: "center" }}>Built for every screen</span>
-          <h2>Watch your website <span className="gradient-text">come alive</span>.</h2>
+          <h2>Pixel-perfect on <span className="gradient-text">every device</span>.</h2>
         </div>
 
         <div className="showcase-devices">
