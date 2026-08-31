@@ -33,15 +33,11 @@ export default function Pricing() {
               </summary>
               <div className="readme-body">
                 <p className="nb-text">{pricing.hosting.text}</p>
-                <div className="hosting-plans">
-                  {pricing.hosting.plans.map((p) => (
-                    <a key={p.label} className="hosting-plan" href={pricing.hosting.framerUrl} target="_blank" rel="noreferrer">
-                      <div className="hp-price"><strong>{p.price}</strong><span>{p.per}</span></div>
-                      <div className="hp-label">{p.label}</div>
-                      <span className="hp-link">View on Framer <Arrow /></span>
-                    </a>
+                <ul className="readme-points">
+                  {pricing.hosting.points.map((p) => (
+                    <li key={p}><Check /> {p}</li>
                   ))}
-                </div>
+                </ul>
                 <p className="note">{pricing.hosting.closing}</p>
               </div>
             </details>

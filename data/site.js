@@ -158,6 +158,24 @@ export const timeline = [
 
 export const work = [
   {
+    title: "AZ Wildfire Mitigation",
+    url: "https://www.azwildfiremitigation.com",
+    image: "/work-az-wildfire.png",
+    tags: ["Wildfire Mitigation", "Built from scratch", "Local SEO"],
+    summary: "Built from scratch for a wildfire-mitigation and tree-service company in Flagstaff — a bold, high-impact site that earns instant trust and turns Northern Arizona homeowners into booked jobs.",
+    // metrics intentionally omitted until real numbers are provided
+  },
+  {
+    title: "Best Clean Pros",
+    url: "https://bestcleanpros.com",
+    image: "/work-best-clean-pros.png",
+    imageFit: "contain",
+    thumbBg: "linear-gradient(135deg, #eaf3fc, #ffffff 55%, #dceefb)",
+    tags: ["Cleaning Service", "Built from scratch", "Booking & SEO"],
+    summary: "A bright, modern website for a residential and commercial cleaning company — built from the ground up to turn local searches into booked cleanings, with clear services, trust-building design, and an easy path to a quote.",
+    // metrics intentionally omitted until real numbers are provided
+  },
+  {
     title: "The Handy Firemen",
     url: "https://thehandyfiremen.com",
     image: "/work-handy-firemen.png",
@@ -172,16 +190,6 @@ export const work = [
     tags: ["Airbnb Business", "Built from scratch", "Bookings"],
     summary: "Built their website entirely from scratch — a modern, one-of-a-kind design crafted to captivate tourists and travelers from afar and turn curious browsers into booked stays.",
     metrics: [ { num: "5%+", lbl: "Conversion rate" }, { num: "↑", lbl: "Booked stays" } ],
-  },
-  {
-    title: "Best Clean Pros",
-    url: "https://bestcleanpros.com",
-    image: "/work-best-clean-pros.png",
-    imageFit: "contain",
-    thumbBg: "linear-gradient(135deg, #eaf3fc, #ffffff 55%, #dceefb)",
-    tags: ["Cleaning Service", "Built from scratch", "Booking & SEO"],
-    summary: "A bright, modern website for a residential and commercial cleaning company — built from the ground up to turn local searches into booked cleanings, with clear services, trust-building design, and an easy path to a quote.",
-    // metrics intentionally omitted until real numbers are provided
   },
 ];
 
@@ -223,16 +231,15 @@ export const pricing = {
   eyebrow: "Super transparent pricing",
   heading: "Plans built to grow with you.",
   sub: "Premium, custom websites built personally for your business. No templates, no hidden fees — just clean, fast, beautiful design that works.",
-  // ---- "Please read before purchasing" — collapsible hosting / Framer subscription note ----
+  // ---- "Please read before purchasing" — collapsible pre-purchase note ----
   hosting: {
     title: "Please read before purchasing",
-    text: "Most WebGrow websites are designed and built on Framer, a premium website platform — and I now build on Cloudflare and GitHub as well. If your site is built on Framer, it requires an active Framer subscription to stay online. This is a recurring monthly fee billed by Framer, and it is separate from your one-time design fee above. You can view Framer's full plans on their official pricing page.",
-    framerUrl: "https://www.framer.com/pricing/",
-    plans: [
-      { price: "$10", per: "/ month", label: "Basic website hosting" },
-      { price: "$30", per: "/ month", label: "Pro website hosting" },
+    text: "Every WebGrow site is built and hosted on Cloudflare — fast, secure, and reliable. A couple of quick things before we begin:",
+    points: [
+      "You'll purchase your preferred domain name — I'll help you choose the right one.",
+      "You add me as a member on your Cloudflare account so I can handle the setup and do most of the technical work for you.",
     ],
-    closing: "Tap either plan above to see it on Framer's pricing page. I'll always recommend the right tier for your needs and walk you through getting set up — so there are never any surprises.",
+    closing: "I'll walk you through both — it only takes a few minutes, and there are never any surprises.",
   },
   tiers: [
     {
