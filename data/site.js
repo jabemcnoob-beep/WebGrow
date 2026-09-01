@@ -160,17 +160,15 @@ export const work = [
   {
     title: "AZ Wildfire Mitigation",
     url: "https://www.azwildfiremitigation.com",
-    image: "/work-az-wildfire.png",
+    image: "/work-az-wildfire.jpg",
     tags: ["Wildfire Mitigation", "Built from scratch", "Local SEO"],
     summary: "Built from scratch for a wildfire-mitigation and tree-service company in Flagstaff — a bold, high-impact site that earns instant trust and turns Northern Arizona homeowners into booked jobs.",
     // metrics intentionally omitted until real numbers are provided
   },
   {
     title: "Best Clean Pros",
-    url: "https://bestcleanpros.com",
-    image: "/work-best-clean-pros.png",
-    imageFit: "contain",
-    thumbBg: "linear-gradient(135deg, #eaf3fc, #ffffff 55%, #dceefb)",
+    url: "https://www.bestcleanpros.com",
+    image: "/work-best-clean-pros.jpg",
     tags: ["Cleaning Service", "Built from scratch", "Booking & SEO"],
     summary: "A bright, modern website for a residential and commercial cleaning company — built from the ground up to turn local searches into booked cleanings, with clear services, trust-building design, and an easy path to a quote.",
     // metrics intentionally omitted until real numbers are provided
@@ -178,7 +176,7 @@ export const work = [
   {
     title: "The Handy Firemen",
     url: "https://thehandyfiremen.com",
-    image: "/work-handy-firemen.png",
+    image: "/work-handy-firemen.jpg",
     tags: ["Handyman Services", "Redesign", "Local SEO"],
     summary: "A complete website redesign engineered for higher traffic and effortless smoothness — we transformed a low-quality, outdated site into a fast, polished online presence that wins trust and books jobs.",
     metrics: [ { num: "+200%", lbl: "Sales rate" }, { num: "5%+", lbl: "Conversion rate" } ],
@@ -186,7 +184,7 @@ export const work = [
   {
     title: "Almost Sedona",
     url: "https://almostsedona.com",
-    image: "/work-almost-sedona.png",
+    image: "/work-almost-sedona.jpg",
     tags: ["Airbnb Business", "Built from scratch", "Bookings"],
     summary: "Built their website entirely from scratch — a modern, one-of-a-kind design crafted to captivate tourists and travelers from afar and turn curious browsers into booked stays.",
     metrics: [ { num: "5%+", lbl: "Conversion rate" }, { num: "↑", lbl: "Booked stays" } ],
