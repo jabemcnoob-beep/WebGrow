@@ -31,7 +31,7 @@ export const site = {
 };
 
 export const nav = [
-  { label: "About", href: "/about" },
+  { label: "Why Us", href: "/why-us" },
   { label: "Services", href: "/services" },
   { label: "Examples", href: "/examples" },
   { label: "Work", href: "/work" },
@@ -319,6 +319,11 @@ export const seo = {
   "/about": {
     title: "Verde Valley Web Designer | About WebGrow, AZ",
     description: "Meet Remington White of WebGrow — a Verde Valley web designer crafting custom, conversion-focused websites for restaurants and local businesses across Arizona.",
+    image: "/og-about.png",
+  },
+  "/why-us": {
+    title: "Why WebGrow | Web Design Built to Rank on Google",
+    description: "Custom web design with SEO built in from day one — WebGrow pushes Verde Valley & Arizona businesses up Google, so customers find you first and buy.",
     image: "/og-about.png",
   },
   "/services": {

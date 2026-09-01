@@ -1,0 +1,273 @@
+/* ============================================================
+   HERO V4 — center-stage monumental hero  (prefix: hv-)
+   Constellation canvas · scrambled 3-line headline · floating orb ·
+   rotating ring text · angled hazard-tape marquee strips · scroll hint
+   ============================================================ */
+
+.hv-hero {
+  position: relative;
+  min-height: 100svh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding-top: var(--nav-h);
+  padding-bottom: 170px; /* room for the angled strips + scroll hint */
+  overflow: hidden;      /* strips span >100vw — never leak horizontal scroll */
+}
+
+/* ---- background canvas ---- */
+.hv-canvas {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+}
+
+/* ---- floating orb behind the headline ---- */
+.hv-orb {
+  position: absolute;
+  left: 50%;
+  top: 44%;
+  width: clamp(320px, 46vw, 640px);
+  aspect-ratio: 1;
+  transform: translate(-50%, -50%);
+  border-radius: 50%;
+  background: radial-gradient(circle at 50% 45%, rgba(255, 31, 143, 0.34), rgba(255, 110, 184, 0.1) 55%, transparent 72%);
+  filter: blur(60px);
+  z-index: 1;
+  pointer-events: none;
+  animation: hv-float 13s ease-in-out infinite alternate;
+  will-change: transform;
+}
+@keyframes hv-float {
+  0%   { transform: translate(-50%, -50%) scale(1); }
+  50%  { transform: translate(-46%, -56%) scale(1.08); }
+  100% { transform: translate(-54%, -47%) scale(0.94); }
+}
+
+/* ---- centered foreground stack ---- */
+.hv-fore {
+  position: relative;
+  z-index: 3;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  will-change: transform, opacity;
+}
+
+/* symmetric eyebrow: mirror the global ::before dash on the right */
+.hv-eyebrow::after {
+  content: "";
+  width: 26px;
+  height: 1px;
+  background: var(--accent);
+  box-shadow: 0 0 8px rgba(255, 31, 143, 0.9);
+}
+
+.hv-title {
+  margin: 0 0 1.6rem;
+  font-family: var(--font-display);
+  font-weight: 700;
+  line-height: 0.95;
+  letter-spacing: -0.03em;
+  text-transform: uppercase;
+}
+.hv-line {
+  display: block;
+  font-size: clamp(2.6rem, 8.5vw, 7rem);
+  white-space: nowrap;
+}
+.hv-line-stroke {
+  color: transparent;
+  -webkit-text-stroke: 2px rgba(255, 255, 255, 0.85);
+}
+.hv-line-solid { color: #fff; }
+.hv-line-pink {
+  font-size: clamp(3.4rem, 11vw, 9rem);
+  color: var(--accent);
+  text-shadow:
+    0 0 30px rgba(255, 31, 143, 0.75),
+    0 0 90px rgba(255, 31, 143, 0.4);
+}
+
+.hv-sub {
+  max-width: 52ch;
+  margin-inline: auto;
+  margin-bottom: 2.2rem;
+}
+
+.hv-cta {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.9rem 1rem;
+}
+
+/* ---- rotating circular text (bottom-right) ---- */
+.hv-ring {
+  position: absolute;
+  right: clamp(24px, 5vw, 72px);
+  bottom: 150px;
+  width: 150px;
+  height: 150px;
+  z-index: 2;
+  pointer-events: none;
+}
+.hv-ring svg {
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+  animation: hv-rotate 24s linear infinite;
+  will-change: transform;
+}
+@keyframes hv-rotate { to { transform: rotate(360deg); } }
+.hv-ring-text {
+  font-family: var(--font-mono);
+  font-size: 13px;
+  letter-spacing: 0.22em;
+  fill: rgba(255, 255, 255, 0.62);
+}
+/* pink pin at the ring's center */
+.hv-ring::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 8px;
+  height: 8px;
+  transform: translate(-50%, -50%);
+  border-radius: 50%;
+  background: var(--accent);
+  box-shadow: 0 0 14px rgba(255, 31, 143, 0.9);
+}
+
+/* ---- angled hazard-tape marquee strips ---- */
+.hv-strips {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 150px;
+  z-index: 2;
+  pointer-events: none;
+}
+.hv-strip {
+  position: absolute;
+  /* negative overhang so the rotation never exposes a gap at the edges */
+  left: -6vw;
+  right: -6vw;
+  overflow: hidden;
+  border-block: 1px solid var(--border);
+  padding-block: 12px;
+}
+.hv-strip-a {
+  bottom: 44px;
+  transform: rotate(-2deg);
+  background: rgba(255, 31, 143, 0.06);
+}
+.hv-strip-b {
+  bottom: 18px;
+  transform: rotate(2deg);
+  background: rgba(255, 255, 255, 0.03);
+}
+.hv-strip-track {
+  display: flex;
+  width: max-content;
+  will-change: transform;
+}
+.hv-strip-a .hv-strip-track { animation: hv-marq-l 28s linear infinite; }
+.hv-strip-b .hv-strip-track { animation: hv-marq-r 34s linear infinite; }
+@keyframes hv-marq-l { to { transform: translateX(-50%); } }
+@keyframes hv-marq-r { from { transform: translateX(-50%); } to { transform: translateX(0); } }
+.hv-strip-item {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 1.05rem;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  white-space: nowrap;
+  color: rgba(255, 255, 255, 0.82);
+  display: inline-flex;
+  align-items: center;
+}
+/* separator lives inside the item so the doubled track halves stay identical */
+.hv-strip-star {
+  font-style: normal;
+  color: var(--accent);
+  text-shadow: 0 0 10px rgba(255, 31, 143, 0.9);
+  font-size: 0.75em;
+  margin-inline: 1.6rem;
+}
+
+/* ---- scroll hint ---- */
+.hv-scrollhint {
+  position: absolute;
+  left: 50%;
+  bottom: 108px;
+  transform: translateX(-50%);
+  z-index: 3;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  font-family: var(--font-mono);
+  font-size: 0.64rem;
+  letter-spacing: 0.32em;
+  text-transform: uppercase;
+  color: var(--faint);
+  pointer-events: none;
+}
+.hv-scrollline {
+  position: relative;
+  width: 1px;
+  height: 44px;
+  background: rgba(255, 255, 255, 0.16);
+  overflow: hidden;
+}
+.hv-scrollline::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: -14px;
+  width: 1px;
+  height: 14px;
+  background: var(--accent);
+  box-shadow: 0 0 8px rgba(255, 31, 143, 0.9);
+  animation: hv-scrollpulse 1.8s cubic-bezier(0.45, 0, 0.55, 1) infinite;
+}
+@keyframes hv-scrollpulse {
+  0%   { transform: translateY(0); }
+  100% { transform: translateY(58px); }
+}
+
+/* ============================================================
+   responsive
+   ============================================================ */
+@media (max-width: 900px) {
+  .hv-strip-item { font-size: 0.95rem; }
+}
+
+@media (max-width: 760px) {
+  .hv-ring { display: none; }
+  .hv-hero { padding-bottom: 150px; }
+  .hv-scrollhint { bottom: 100px; }
+}
+
+@media (max-width: 560px) {
+  /* longest line ("WEBSITES THAT") must survive 320px-wide screens */
+  .hv-line { font-size: clamp(2.1rem, 10.5vw, 7rem); }
+  .hv-line-pink { font-size: clamp(2.9rem, 13.5vw, 9rem); }
+  .hv-line-stroke { -webkit-text-stroke-width: 1.5px; }
+  .hv-strip-item { font-size: 0.85rem; }
+  .hv-strip-star { margin-inline: 1.1rem; }
+  .hv-strip { padding-block: 9px; }
+  .hv-strip-a { bottom: 38px; }
+  .hv-strip-b { bottom: 16px; }
+  .hv-hero { padding-bottom: 132px; }
+  .hv-scrollhint { bottom: 92px; }
+  .hv-scrollline { height: 34px; }
+  .hv-cta .btn { width: min(100%, 320px); }
+}

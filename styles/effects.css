@@ -1,0 +1,244 @@
+/* ============================================================
+   WebGrow — EFFECTS KIT (prefix: fx-)
+   Companion styles for components/TextScramble, TiltCard,
+   Spotlight, ScrollProgress, Grain, Watermark + .fx-beam utility.
+   Imported globally by _app.js (Next.js global-CSS rule).
+   ============================================================ */
+
+/* ------------------------------------------------------------
+   TextScramble
+   ------------------------------------------------------------ */
+.fx-scramble .fx-ch {
+  display: inline;
+}
+/* characters currently cycling through glitch glyphs */
+.fx-scramble .fx-ch.fx-on {
+  color: var(--accent);
+  text-shadow: 0 0 14px rgba(255, 31, 143, 0.6);
+}
+
+/* ------------------------------------------------------------
+   TiltCard
+   ------------------------------------------------------------ */
+.fx-tilt {
+  perspective: 900px;
+}
+.fx-tilt-inner {
+  position: relative;
+  height: 100%;
+  transform-style: preserve-3d;
+  will-change: transform;
+}
+.fx-glare {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  /* matches the codebase card radius; override per-use if the child differs */
+  border-radius: var(--radius-lg);
+  pointer-events: none;
+  mix-blend-mode: overlay;
+  opacity: 0;
+  transition: opacity 0.35s ease;
+  background: radial-gradient(
+    300px circle at var(--fx-gx, 50%) var(--fx-gy, 50%),
+    rgba(255, 255, 255, 0.4),
+    rgba(255, 31, 143, 0.25) 45%,
+    transparent 72%
+  );
+}
+.fx-tilt-on .fx-glare {
+  opacity: 1;
+}
+
+/* ------------------------------------------------------------
+   Spotlight — pink glow + border highlight that track the cursor
+   ------------------------------------------------------------ */
+.fx-spot {
+  position: relative;
+}
+.fx-spot::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  border-radius: inherit;
+  background: radial-gradient(
+    240px circle at var(--fx-mx, 50%) var(--fx-my, 50%),
+    rgba(255, 31, 143, 0.14),
+    transparent 70%
+  );
+  opacity: 0;
+  transition: opacity 0.35s ease;
+  pointer-events: none;
+}
+.fx-spot:hover::before {
+  opacity: 1;
+}
+/* 1px border ring, lit only near the cursor (masked padding-box XOR) */
+.fx-spot::after {
+  content: "";
+  position: absolute;
+  inset: -1px;
+  z-index: 1;
+  border-radius: inherit;
+  padding: 1px;
+  background: radial-gradient(
+    200px circle at var(--fx-mx, 50%) var(--fx-my, 50%),
+    rgba(255, 31, 143, 0.9),
+    rgba(255, 110, 184, 0.25) 55%,
+    transparent 75%
+  );
+  -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  opacity: 0;
+  transition: opacity 0.35s ease;
+  pointer-events: none;
+}
+.fx-spot:hover::after {
+  opacity: 1;
+}
+
+/* ------------------------------------------------------------
+   ScrollProgress
+   ------------------------------------------------------------ */
+.fx-progress {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  z-index: 9500; /* above nav (100) + grain (9000), below cursor (9999) */
+  background: var(--grad);
+  box-shadow: 0 0 12px rgba(255, 31, 143, 0.8), 0 0 32px rgba(255, 31, 143, 0.4);
+  transform: scaleX(0);
+  transform-origin: left;
+  will-change: transform;
+  pointer-events: none;
+}
+
+/* ------------------------------------------------------------
+   Grain — SVG feTurbulence tile stepped through 8 offsets
+   ------------------------------------------------------------ */
+.fx-grain {
+  position: fixed;
+  inset: 0;
+  z-index: 9000; /* just under the custom cursor (9999) */
+  pointer-events: none;
+  opacity: 0.05;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='240' height='240'%3E%3Cfilter id='g'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='240' height='240' filter='url(%23g)'/%3E%3C/svg%3E");
+  background-repeat: repeat;
+  animation: fx-grain-shift 0.9s steps(1, end) infinite;
+}
+/* steps(1, end) holds each frame's offset, so the tile jumps — film flicker.
+   Under reduced motion the global animation kill-switch freezes frame one. */
+@keyframes fx-grain-shift {
+  0%    { background-position: 0 0; }
+  12.5% { background-position: -32px 14px; }
+  25%   { background-position: 18px -26px; }
+  37.5% { background-position: -20px -30px; }
+  50%   { background-position: 30px 8px; }
+  62.5% { background-position: -14px 28px; }
+  75%   { background-position: 24px -18px; }
+  87.5% { background-position: -28px -8px; }
+  100%  { background-position: 0 0; }
+}
+
+/* ------------------------------------------------------------
+   Watermark — giant outline word, top-right of a .fx-wm-clip section
+   ------------------------------------------------------------ */
+.fx-wm-clip {
+  position: relative;
+  overflow: hidden;
+}
+.fx-wm {
+  position: absolute;
+  top: -0.08em;
+  right: -0.04em;
+  z-index: 0;
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: clamp(6rem, 18vw, 16rem);
+  line-height: 1;
+  letter-spacing: -0.04em;
+  text-transform: uppercase;
+  white-space: nowrap;
+  color: transparent;
+  -webkit-text-stroke: 1px rgba(255, 255, 255, 0.07);
+  pointer-events: none;
+  user-select: none;
+  will-change: transform;
+}
+
+/* ------------------------------------------------------------
+   .fx-beam — rotating laser border for CTA surfaces.
+   Apply to a rounded container; both rings inherit its radius.
+   ------------------------------------------------------------ */
+@property --fx-angle {
+  syntax: "<angle>";
+  initial-value: 0deg;
+  inherits: false;
+}
+.fx-beam {
+  position: relative;
+}
+/* faint static ring so the edge reads while the beam is elsewhere */
+.fx-beam::before {
+  content: "";
+  position: absolute;
+  inset: -1px;
+  border-radius: inherit;
+  padding: 1px;
+  background: rgba(255, 31, 143, 0.22);
+  -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  pointer-events: none;
+}
+/* the beam: conic comet tail swept by the registered --fx-angle custom
+   property (supported in current Chrome/Safari/Firefox; without @property the
+   ring stays a static gradient — a graceful fallback, never broken) */
+.fx-beam::after {
+  content: "";
+  position: absolute;
+  inset: -1px;
+  border-radius: inherit;
+  padding: 1.5px;
+  background: conic-gradient(
+    from var(--fx-angle, 0deg),
+    transparent 0deg,
+    transparent 286deg,
+    rgba(255, 110, 184, 0.45) 322deg,
+    #ffffff 344deg,
+    var(--accent) 354deg,
+    transparent 360deg
+  );
+  -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  filter: drop-shadow(0 0 7px rgba(255, 31, 143, 0.65));
+  pointer-events: none;
+  animation: fx-beam-spin 3.4s linear infinite;
+  will-change: filter;
+}
+@keyframes fx-beam-spin {
+  to { --fx-angle: 360deg; }
+}
+
+/* ------------------------------------------------------------
+   Mobile
+   ------------------------------------------------------------ */
+@media (max-width: 760px) {
+  /* keep the watermark decorative, never dominant, on small screens */
+  .fx-wm {
+    -webkit-text-stroke-color: rgba(255, 255, 255, 0.055);
+  }
+}
+@media (max-width: 560px) {
+  .fx-glare {
+    display: none; /* no fine pointer to drive it anyway */
+  }
+  .fx-wm {
+    font-size: clamp(4.5rem, 20vw, 7rem);
+  }
+}

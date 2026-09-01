@@ -1,6 +1,10 @@
 import { useEffect, useRef, useState } from "react";
 import Router from "next/router";
 import "@/styles/globals.css";
+import "@/styles/effects.css";
+import "@/styles/hero.css";
+import "@/styles/showcase.css";
+import "@/styles/whyus.css";
 import Layout from "@/components/Layout";
 
 const normalize = (url) => (url.split("?")[0].split("#")[0].replace(/\/+$/, "") || "/");

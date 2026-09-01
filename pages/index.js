@@ -1,87 +1,25 @@
-import { useEffect, useRef } from "react";
 import Link from "next/link";
-import dynamic from "next/dynamic";
 import Seo from "@/components/Seo";
 import Reveal from "@/components/Reveal";
 import Magnetic from "@/components/Magnetic";
 import Counter from "@/components/Counter";
+import HeroV4 from "@/components/HeroV4";
+import Watermark from "@/components/Watermark";
 import BuildSequence from "@/components/BuildSequence";
 import DeviceShowcase from "@/components/DeviceShowcase";
 import ServicesRail from "@/components/ServicesRail";
 import WorkGallery from "@/components/WorkGallery";
 import ReviewsBelt from "@/components/ReviewsBelt";
 import { Arrow } from "@/components/Icon";
-import { site, stats, marquee, founderQuote, effects } from "@/data/site";
-
-// WebGL aurora is client-only.
-const ShaderField = dynamic(() => import("@/components/ShaderField"), { ssr: false });
-
-const HERO_LINES = [
-  { text: "We design", cls: "stroke", d: "60ms" },
-  { text: "websites", cls: "fill", d: "170ms" },
-  { text: "that sell.", cls: "pink", d: "280ms" },
-];
+import { site, stats, founderQuote, effects } from "@/data/site";
 
 export default function Home() {
-  const heroScrollRef = useRef(0);
-
-  // feed hero scroll (0..1 over the first viewport) into the shader
-  useEffect(() => {
-    let raf = 0;
-    const update = () => {
-      raf = 0;
-      heroScrollRef.current = Math.min(1, window.scrollY / window.innerHeight);
-    };
-    const onScroll = () => { if (!raf) raf = requestAnimationFrame(update); };
-    update();
-    window.addEventListener("scroll", onScroll, { passive: true });
-    return () => {
-      window.removeEventListener("scroll", onScroll);
-      if (raf) cancelAnimationFrame(raf);
-    };
-  }, []);
-
   return (
     <>
       <Seo path="/" />
 
-      {/* ================= ACT 1 — aurora hero, kinetic type ================= */}
-      <section className="hero-k">
-        <div className="shader-wrap"><ShaderField scrollRef={heroScrollRef} /></div>
-        <div className="container">
-          <span className="eyebrow hk-eyebrow">{site.area} — by {site.founder}</span>
-          <h1 style={{ margin: 0 }}>
-            {HERO_LINES.map((l) => (
-              <span className={`hk-line ${l.cls}`} key={l.text}>
-                <span className="word-in" style={{ "--d": l.d }}>{l.text}</span>
-              </span>
-            ))}
-          </h1>
-          <div className="hk-sub">
-            <p className="lead">
-              {site.name} turns websites into your #1 revenue driver — custom-built,
-              lightning-fast, and engineered to convert visitors into customers.
-            </p>
-            <div className="hk-actions">
-              <Magnetic><Link href="/contact" className="btn btn-primary btn-lg">Get a free quote <Arrow /></Link></Magnetic>
-              <Magnetic><Link href="/work" className="btn btn-ghost btn-lg">See the work</Link></Magnetic>
-            </div>
-          </div>
-        </div>
-        <div className="scroll-hint">
-          <span className="mouse" />
-          Scroll
-        </div>
-      </section>
-
-      {/* ================= giant outline ticker ================= */}
-      <div className="ticker" aria-hidden>
-        <div className="ticker-track">
-          {[...marquee, ...marquee].map((m, i) => (
-            <span className={`ticker-item ${i % 3 === 1 ? "solid" : ""}`} key={i}>{m}</span>
-          ))}
-        </div>
-      </div>
+      {/* ================= ACT 1 — constellation hero ================= */}
+      <HeroV4 />
 
       {/* ================= ACT 2 — the build sequence ================= */}
       <BuildSequence />
@@ -107,8 +45,9 @@ export default function Home() {
       <ServicesRail />
 
       {/* ================= ACT 5 — work index with floating previews ================= */}
-      <section>
-        <div className="container">
+      <section className="fx-wm-clip">
+        <Watermark word="Work" />
+        <div className="container" style={{ position: "relative" }}>
           <div className="section-head" style={{ display: "flex", alignItems: "flex-end", justifyContent: "space-between", gap: 24, maxWidth: "none", flexWrap: "wrap" }}>
             <div>
               <span className="eyebrow">Selected work</span>
@@ -138,8 +77,9 @@ export default function Home() {
       </section>
 
       {/* ================= ACT 6 — reviews belt ================= */}
-      <section style={{ paddingTop: 0 }}>
-        <div className="container">
+      <section className="fx-wm-clip" style={{ paddingTop: 0 }}>
+        <Watermark word="Loved" />
+        <div className="container" style={{ position: "relative" }}>
           <div className="section-head">
             <span className="eyebrow">Loved by founders</span>
             <h2>Five stars, <span className="gradient-text">every time</span>.</h2>

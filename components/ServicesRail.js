@@ -1,4 +1,5 @@
 import { useEffect, useRef } from "react";
+import TiltCard from "@/components/TiltCard";
 import { services } from "@/data/site";
 
 /**
@@ -38,12 +39,8 @@ export default function ServicesRail() {
     };
     const onScroll = () => { if (!raf) raf = requestAnimationFrame(update); };
 
-    if (reduce) {
-      // static: park the rail at its start and skip the scrub
-      layout();
-      stage.style.height = "";
-      return;
-    }
+    // reduced motion: CSS renders the plain vertical list — no scrub needed
+    if (reduce) return;
 
     update();
     window.addEventListener("scroll", onScroll, { passive: true });
@@ -64,12 +61,14 @@ export default function ServicesRail() {
         </div>
         <div className="rail-track" ref={trackRef}>
           {services.map((s, i) => (
-            <article className="rail-card" key={s.title}>
-              <div className="no">0{i + 1}</div>
-              <div className="ic">{s.icon}</div>
-              <h3>{s.title}</h3>
-              <p>{s.desc}</p>
-            </article>
+            <TiltCard key={s.title} max={7} className="rail-tilt">
+              <article className="rail-card">
+                <div className="no">0{i + 1}</div>
+                <div className="ic">{s.icon}</div>
+                <h3>{s.title}</h3>
+                <p>{s.desc}</p>
+              </article>
+            </TiltCard>
           ))}
         </div>
         <div className="rail-progress"><i ref={barRef} /></div>

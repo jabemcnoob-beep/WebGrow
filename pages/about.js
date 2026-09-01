@@ -1,81 +1,38 @@
+import { useEffect } from "react";
+import { useRouter } from "next/router";
+import Link from "next/link";
 import Seo from "@/components/Seo";
-import Reveal from "@/components/Reveal";
-import CtaBand from "@/components/CtaBand";
-import { site, values, timeline, stats } from "@/data/site";
 
+/**
+ * Redirect stub: /about moved to /why-us. Cloudflare Pages serves a real
+ * 301 via public/_redirects; this client-side fallback covers local dev
+ * and any cached HTML. Noindexed so search engines only see /why-us.
+ */
 export default function About() {
+  const router = useRouter();
+
+  useEffect(() => {
+    // Hard-redirect fallback in case the SPA transition is aborted
+    // (e.g. by a hydration hiccup); cleared once the route change unmounts us.
+    const t = setTimeout(() => {
+      if (window.location.pathname.startsWith("/about")) {
+        window.location.replace("/why-us/");
+      }
+    }, 1200);
+    router.replace("/why-us").catch(() => {});
+    return () => clearTimeout(t);
+  }, [router]);
+
   return (
     <>
-      <Seo path="/about" />
-
+      <Seo path="/about" noindex />
       <section className="page-hero">
-        <div className="container">
-          <Reveal>
-            <span className="eyebrow">About {site.name}</span>
-            <h1>The website your business <span className="gradient-text">deserves</span>.</h1>
-            <p className="lead">
-              {site.name} is led by {site.founder} — a Verde Valley web design studio
-              obsessed with one thing: turning visitors into customers. We help restaurants
-              and local businesses across Arizona — Sedona, Cottonwood, Camp Verde and
-              beyond — with custom, personally-crafted websites. No templates, no bloat,
-              just design built to grow your business.
-            </p>
-          </Reveal>
+        <div className="container center">
+          <p className="lead">
+            Redirecting… If nothing happens, <Link href="/why-us">head to Why Us</Link>.
+          </p>
         </div>
       </section>
-
-      <section style={{ paddingTop: 0 }}>
-        <div className="container">
-          <Reveal className="stats">
-            {stats.map((s) => (
-              <div className="stat" key={s.label}>
-                <div className="num">{s.num}</div>
-                <div className="label">{s.label}</div>
-              </div>
-            ))}
-          </Reveal>
-        </div>
-      </section>
-
-      <section>
-        <div className="container">
-          <div className="section-head">
-            <span className="eyebrow">What we believe</span>
-            <h2>Principles we build by.</h2>
-          </div>
-          <div className="value-grid">
-            {values.map((v, i) => (
-              <Reveal key={v.title} className="card card-glow feature" delay={i * 70}>
-                <div className="ic">{v.icon}</div>
-                <h3>{v.title}</h3>
-                <p>{v.desc}</p>
-              </Reveal>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      <section>
-        <div className="container">
-          <div className="section-head">
-            <span className="eyebrow">How we work</span>
-            <h2>A simple, proven process.</h2>
-          </div>
-          <Reveal className="timeline">
-            {timeline.map((row) => (
-              <div className="row" key={row.title}>
-                <div className="yr">{row.yr}</div>
-                <div>
-                  <h3 style={{ fontSize: "1.25rem", marginBottom: 6 }}>{row.title}</h3>
-                  <p style={{ margin: 0 }}>{row.desc}</p>
-                </div>
-              </div>
-            ))}
-          </Reveal>
-        </div>
-      </section>
-
-      <CtaBand title="Let's build something worth bragging about." />
     </>
   );
 }

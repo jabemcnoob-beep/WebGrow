@@ -11,6 +11,9 @@ export default function CtaBand({
   return (
     <section>
       <div className="container">
+        {/* fx-beam draws its rotating border on this wrapper — the band itself
+            has overflow:hidden and its own ::before, so it can't host it */}
+        <div className="fx-beam" style={{ borderRadius: "var(--radius-lg)" }}>
         <Reveal className="cta-band">
           <span className="eyebrow">Let's talk</span>
           <h2 style={{ maxWidth: "16ch", marginInline: "auto" }}>{title}</h2>
@@ -24,6 +27,7 @@ export default function CtaBand({
             </Link>
           </div>
         </Reveal>
+        </div>
       </div>
     </section>
   );

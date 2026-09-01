@@ -1,9 +1,17 @@
+import { useEffect, useState } from "react";
 import Link from "next/link";
 import { site, nav } from "@/data/site";
 
 export default function Footer() {
+  // Static export bakes the build-time year into the HTML; hydrate with the
+  // same constant, then correct to the visitor's year after mount.
+  const [year, setYear] = useState(2026);
+  useEffect(() => { setYear(new Date().getFullYear()); }, []);
   return (
     <footer className="footer">
+      <Link href="/contact" className="footer-shout" aria-label="Let's grow — get in touch">
+        Let&rsquo;s grow<span className="tail">.</span>
+      </Link>
       <div className="container">
         <div className="footer-grid">
           <div>
@@ -42,7 +50,7 @@ export default function Footer() {
         </div>
 
         <div className="footer-bottom">
-          <span>© {new Date().getFullYear()} {site.name}. All rights reserved.</span>
+          <span>© {year} {site.name}. All rights reserved.</span>
           <span>Proudly serving Sedona, Cottonwood, Camp Verde &amp; the Verde Valley, Arizona.</span>
         </div>
       </div>
