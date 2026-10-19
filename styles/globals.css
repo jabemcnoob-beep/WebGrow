@@ -733,8 +733,11 @@ section { position: relative; padding-block: clamp(72px, 11vw, 140px); }
 .price-card:hover { transform: translateY(-6px); border-color: var(--border-strong); }
 .price-card.featured {
   border-color: transparent;
+  /* the opaque middle layer stops the border gradient bleeding through the
+     translucent pink tint and washing out the whole card */
   background:
     linear-gradient(180deg, rgba(255, 31, 143, 0.12), rgba(255, 31, 143, 0.03)) padding-box,
+    linear-gradient(#0b0b0d, #0b0b0d) padding-box,
     var(--grad) border-box;
   border: 1.5px solid transparent;
   box-shadow: 0 30px 90px -30px rgba(255, 31, 143, 0.7);
@@ -746,7 +749,8 @@ section { position: relative; padding-block: clamp(72px, 11vw, 140px); }
 .price-card.featured li svg { color: #fff; }
 .price-card .tier { font-family: var(--font-mono); font-size: 0.78rem; letter-spacing: 0.16em; text-transform: uppercase; color: var(--accent-2); }
 .price-card .badge {
-  position: absolute; top: 20px; right: 20px;
+  /* sits on the top edge so it never collides with the plan name */
+  position: absolute; top: -11px; right: 20px;
   font-family: var(--font-mono); font-size: 0.66rem; letter-spacing: 0.12em; text-transform: uppercase;
   padding: 0.35em 0.8em; border-radius: 999px; background: var(--accent); color: #000; font-weight: 700;
   box-shadow: 0 0 16px rgba(255, 31, 143, 0.6);
@@ -754,7 +758,7 @@ section { position: relative; padding-block: clamp(72px, 11vw, 140px); }
 .price-card .amount { display: flex; align-items: flex-end; gap: 0.3rem; margin: 0.7rem 0 0.2rem; }
 .price-card .amount .cur { font-size: 1.4rem; color: var(--muted); font-family: var(--font-display); margin-bottom: 0.55rem; }
 .price-card .amount .val { font-family: var(--font-display); font-weight: 700; font-size: clamp(3rem, 6vw, 4rem); line-height: 0.9; letter-spacing: -0.03em; color: #fff; }
-.price-card .amount .per { color: var(--faint); font-size: 0.92rem; margin-bottom: 0.6rem; }
+.price-card .amount .per { color: var(--faint); font-size: 0.92rem; margin-bottom: 0.6rem; white-space: nowrap; }
 .price-card .desc { color: var(--muted); font-size: 0.95rem; min-height: 2.6em; }
 .price-card .btn { width: 100%; margin: 22px 0; }
 .price-card ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 12px; }
@@ -762,6 +766,91 @@ section { position: relative; padding-block: clamp(72px, 11vw, 140px); }
 .price-card li svg { flex: none; margin-top: 3px; color: var(--accent); }
 .price-card li.off { color: var(--faint); }
 .price-card li.off svg { color: var(--faint); }
+
+/* 50/50 invoice on each plan card */
+.invoice {
+  margin-top: 18px;
+  border: 1px dashed rgba(255, 255, 255, 0.18);
+  border-radius: 14px;
+  padding: 12px 14px;
+  background: rgba(0, 0, 0, 0.35);
+  font-variant-numeric: tabular-nums;
+}
+.invoice-head {
+  display: flex;
+  justify-content: space-between;
+  font-family: var(--font-mono);
+  font-size: 0.66rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--accent-2);
+  padding-bottom: 8px;
+  border-bottom: 1px solid var(--border);
+}
+.invoice-row, .invoice-total {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 12px;
+  padding: 9px 0;
+}
+.invoice-row + .invoice-row { border-top: 1px solid rgba(255, 255, 255, 0.06); }
+.invoice-row b { display: block; font-size: 0.9rem; font-weight: 600; color: var(--text); }
+.invoice-row small { display: block; font-size: 0.76rem; color: var(--faint); }
+.invoice .amt { font-family: var(--font-display); font-weight: 700; font-size: 1.05rem; color: #fff; white-space: nowrap; }
+.invoice-total { border-top: 1px solid var(--border); padding-bottom: 0; font-family: var(--font-mono); font-size: 0.72rem; letter-spacing: 0.16em; text-transform: uppercase; color: var(--muted); }
+.invoice-total .amt { color: var(--accent); text-shadow: 0 0 14px rgba(255, 31, 143, 0.5); }
+.price-card .btn { margin: 18px 0 10px; }
+.price-card .pay-full {
+  display: block;
+  text-align: center;
+  font-size: 0.82rem;
+  color: var(--muted);
+  margin-bottom: 22px;
+  text-decoration: underline;
+  text-decoration-color: rgba(255, 255, 255, 0.2);
+  text-underline-offset: 3px;
+}
+.price-card .pay-full:hover { color: #fff; text-decoration-color: var(--accent); }
+.price-card.featured .pay-full { color: rgba(255, 255, 255, 0.78); }
+
+/* 50/50 terms panel under the plans */
+.terms {
+  margin-top: clamp(36px, 5vw, 56px);
+  display: grid;
+  grid-template-columns: 1.1fr 1fr;
+  gap: clamp(24px, 4vw, 48px);
+  align-items: center;
+  padding: clamp(24px, 4vw, 40px);
+  border-radius: var(--radius-lg);
+  border: 1px solid rgba(255, 31, 143, 0.28);
+  background: linear-gradient(180deg, rgba(255, 31, 143, 0.07), rgba(255, 31, 143, 0.015));
+}
+.terms h2 { font-size: clamp(1.6rem, 3vw, 2.2rem); }
+.terms p { margin: 0; }
+.terms-steps { list-style: none; margin: 0; padding: 0; display: grid; gap: 14px; }
+.terms-steps li {
+  display: flex;
+  gap: 16px;
+  align-items: center;
+  padding: 14px 16px;
+  border-radius: 14px;
+  border: 1px solid var(--border);
+  background: rgba(0, 0, 0, 0.4);
+}
+.terms-pct {
+  flex: none;
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 1.6rem;
+  color: var(--accent);
+  text-shadow: 0 0 18px rgba(255, 31, 143, 0.55);
+  min-width: 3.2ch;
+}
+.terms-steps b { display: block; color: #fff; font-weight: 600; }
+.terms-steps b em { font-style: normal; font-family: var(--font-mono); font-size: 0.68rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--accent-2); margin-left: 8px; }
+.terms-steps small { display: block; color: var(--muted); font-size: 0.88rem; }
+@media (max-width: 800px) { .terms { grid-template-columns: 1fr; } }
 
 .pricing-faq { max-width: 760px; margin: clamp(60px, 9vw, 110px) auto 0; }
 .faq-item { border-top: 1px solid var(--border); padding: 22px 0; }

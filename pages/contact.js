@@ -8,16 +8,22 @@ import { site } from "@/data/site";
 export default function Contact() {
   const router = useRouter();
   const plan = typeof router.query.plan === "string" ? router.query.plan : "";
+  const deposit = router.query.deposit === "1";
   const [form, setForm] = useState({ name: "", email: "", phone: "", job: "" });
 
   const set = (k) => (e) => setForm((f) => ({ ...f, [k]: e.target.value }));
 
   const submit = (e) => {
     e.preventDefault();
-    const subject = encodeURIComponent(`Free quote request — ${form.name || "New enquiry"}`);
+    const subject = encodeURIComponent(
+      deposit
+        ? `Deposit request — ${plan} — ${form.name || "New client"}`
+        : `Free quote request — ${form.name || "New enquiry"}`
+    );
     const body = encodeURIComponent(
       `Name: ${form.name}\nEmail: ${form.email}\nPhone: ${form.phone}` +
         (plan ? `\nPlan of interest: ${plan}` : "") +
+        (deposit ? `\nPayment: 50% deposit now, 50% at launch — please send my deposit invoice.` : "") +
         `\n\nJob needed:\n${form.job}`
     );
     window.location.href = `mailto:${site.email}?subject=${subject}&body=${body}`;
@@ -42,6 +48,12 @@ export default function Contact() {
                 {site.phone ? <> or call <a href={`tel:${site.phone}`} style={{ color: "var(--accent-2)" }}>{site.phone}</a></> : null}.
               </p>
               {plan && <p className="pill" style={{ marginTop: 12 }}>Plan of interest: {plan}</p>}
+              {deposit && (
+                <p className="note" style={{ marginTop: 12 }}>
+                  Send this form and {site.founder} will email you a secure Stripe invoice for your
+                  50% deposit. The other half is only due at launch, after you approve your site.
+                </p>
+              )}
             </Reveal>
 
             <Reveal delay={80}>
@@ -64,7 +76,9 @@ export default function Contact() {
                   <label htmlFor="job">Job needed</label>
                   <textarea id="job" required value={form.job} onChange={set("job")} placeholder="I need a smooth and modern e-commerce website built." />
                 </div>
-                <button type="submit" className="btn btn-primary btn-lg">Get my free quote <Arrow /></button>
+                <button type="submit" className="btn btn-primary btn-lg">
+                  {deposit ? "Request my deposit invoice" : "Get my free quote"} <Arrow />
+                </button>
               </form>
             </Reveal>
           </div>

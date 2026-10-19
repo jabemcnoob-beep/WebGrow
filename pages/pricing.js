@@ -5,6 +5,46 @@ import CtaBand from "@/components/CtaBand";
 import { Check, Arrow } from "@/components/Icon";
 import { site, pricing } from "@/data/site";
 
+const toNumber = (price) => Number(String(price).replace(/[^0-9.]/g, ""));
+const money = (n) =>
+  "$" + n.toLocaleString("en-US", { minimumFractionDigits: n % 1 ? 2 : 0, maximumFractionDigits: 2 });
+
+// Deposit goes to the tier's half-price Stripe link when one exists;
+// otherwise to the contact page, where Remington emails a deposit invoice.
+const depositHref = (tier) =>
+  tier.depositLink || `/contact?plan=${encodeURIComponent(tier.name)}&deposit=1`;
+
+function Invoice({ tier }) {
+  const total = toNumber(tier.price);
+  const half = total / 2;
+  return (
+    <div className="invoice" aria-label={`Payment schedule for ${tier.name}`}>
+      <div className="invoice-head">
+        <span>Invoice</span>
+        <span>50 / 50</span>
+      </div>
+      <div className="invoice-row">
+        <span>
+          <b>Deposit · 50%</b>
+          <small>Due today</small>
+        </span>
+        <span className="amt">{money(half)}</span>
+      </div>
+      <div className="invoice-row">
+        <span>
+          <b>Balance · 50%</b>
+          <small>Due at launch, after you approve</small>
+        </span>
+        <span className="amt">{money(half)}</span>
+      </div>
+      <div className="invoice-total">
+        <span>Total</span>
+        <span className="amt">{money(total)}</span>
+      </div>
+    </div>
+  );
+}
+
 export default function Pricing() {
   return (
     <>
@@ -54,9 +94,16 @@ export default function Pricing() {
                 </div>
                 <p className="desc">{tier.tagline}</p>
 
-                <a href={tier.paymentLink} className={`btn ${tier.featured ? "btn-primary" : "btn-ghost"}`}>
-                  {tier.cta}
+                <Invoice tier={tier} />
+
+                <a href={depositHref(tier)} className={`btn ${tier.featured ? "btn-primary" : "btn-ghost"}`}>
+                  Start with {money(toNumber(tier.price) / 2)} deposit
                 </a>
+                {tier.paymentLink && (
+                  <a href={tier.paymentLink} className="pay-full">
+                    Prefer to pay in full? Pay {tier.price} now →
+                  </a>
+                )}
 
                 <ul>
                   {tier.features.map((f) => (
@@ -68,6 +115,26 @@ export default function Pricing() {
               </Reveal>
             ))}
           </div>
+
+          {/* ---------------- 50 / 50 TERMS ---------------- */}
+          <Reveal className="terms">
+            <div className="terms-copy">
+              <span className="eyebrow">{pricing.terms.eyebrow}</span>
+              <h2>{pricing.terms.heading}</h2>
+              <p>{pricing.terms.text}</p>
+            </div>
+            <ol className="terms-steps">
+              {pricing.terms.steps.map((s, i) => (
+                <li key={s.label}>
+                  <span className="terms-pct">50%</span>
+                  <span>
+                    <b>{i + 1}. {s.label} <em>{s.when}</em></b>
+                    <small>{s.desc}</small>
+                  </span>
+                </li>
+              ))}
+            </ol>
+          </Reveal>
 
           <p className="note center" style={{ marginTop: 28 }}>
             Not sure which plan fits? Remington will personally help you choose the right one for your goals —{" "}

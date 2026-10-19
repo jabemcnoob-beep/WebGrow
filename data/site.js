@@ -239,6 +239,20 @@ export const pricing = {
     ],
     closing: "I'll walk you through both — it only takes a few minutes, and there are never any surprises.",
   },
+  // ---- 50 / 50 payment terms (shown as an invoice on every plan) ----
+  // Each tier's `depositLink` is a Stripe Payment Link for exactly half the
+  // price. Leave it "" and the deposit button sends people to the contact
+  // page instead, so you can email them a Stripe invoice for the deposit.
+  // The remaining 50% is sent as a Stripe invoice after the site is approved.
+  terms: {
+    eyebrow: "Pay half now, half at launch",
+    heading: "You only pay the rest when you love it.",
+    text: "Every plan is split into two simple payments. A 50% deposit reserves your spot and kicks off the build. The other 50% is invoiced after you've reviewed and approved your finished website — right before it goes live.",
+    steps: [
+      { label: "Deposit", when: "Due today", desc: "Reserves your build slot. Work starts within one business day." },
+      { label: "Balance", when: "Due at launch", desc: "Invoiced by email once you've approved the finished site — then it goes live." },
+    ],
+  },
   tiers: [
     {
       id: "custom-website",
@@ -246,6 +260,7 @@ export const pricing = {
       price: "$500",
       tagline: "A high-quality, lightning-fast custom website — designed and built personally for your business, all in one.",
       paymentLink: "https://buy.stripe.com/fZu8wQ7Bh33d94udYQ0oM00",
+      depositLink: "",
       cta: "Get Started",
       featured: false,
       features: [
@@ -262,6 +277,7 @@ export const pricing = {
       price: "$1,000",
       tagline: "Everything in the Custom Website, plus full SEO and a hands-on launch so customers actually find you on Google.",
       paymentLink: "https://buy.stripe.com/fZu9AU08P33d5Si3kc0oM01",
+      depositLink: "",
       cta: "Get Started",
       featured: true,
       badge: "Most Popular",
@@ -278,6 +294,7 @@ export const pricing = {
       price: "$5,000",
       tagline: "For ambitious projects — e-commerce, booking systems, or something bigger, built around your exact goals.",
       paymentLink: "https://buy.stripe.com/9B66oIf3J7jt6Wmg6Y0oM02",
+      depositLink: "",
       cta: "Get Started",
       featured: false,
       features: [
@@ -289,6 +306,7 @@ export const pricing = {
     },
   ],
   faqs: [
+    { q: "How does payment work?", a: "Half up front, half at launch. A 50% deposit reserves your spot and starts the build. Once you've reviewed and approved your finished site, I email you a Stripe invoice for the remaining 50% — pay it, and your site goes live. Prefer to pay in full up front? That's an option on every plan too." },
     { q: "How long does a build take?", a: "Most websites ship within a 60-day turnaround, and often much faster depending on scope. You'll get a clear timeline before we start." },
     { q: "Do I own the site?", a: "Completely. We hand over a clean, fast site and deploy it to your own hosting. No platform lock-in, no monthly ransom." },
     { q: "What's the difference between the plans?", a: "Custom Website is the core build. Website + SEO & Launch adds full search optimization and a hands-on launch. Custom / Let's Talk is for e-commerce, booking, or anything more ambitious." },

@@ -25,3 +25,6 @@ npm-debug.log*
 
 # build artifacts / uploads
 *.zip
+
+# local marketing assets (not part of the public site repo)
+/marketing/

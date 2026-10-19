@@ -3,8 +3,9 @@ import Seo from "@/components/Seo";
 import Reveal from "@/components/Reveal";
 import EffectsShowcase from "@/components/EffectsShowcase";
 import CtaBand from "@/components/CtaBand";
+import WorkCard from "@/components/WorkCard";
 import { Arrow } from "@/components/Icon";
-import { site, effects } from "@/data/site";
+import { site, effects, work } from "@/data/site";
 
 export default function Examples() {
   return (
@@ -14,18 +15,39 @@ export default function Examples() {
       <section className="page-hero">
         <div className="container">
           <Reveal>
-            <span className="eyebrow">Effects showcase</span>
-            <h1>The kind of <span className="gradient-text">magic</span> we can build for you.</h1>
+            <span className="eyebrow">Examples</span>
+            <h1>Real sites. Live <span className="gradient-text">magic</span>.</h1>
             <p className="lead">
-              These are live, interactive demos — move your cursor around and scroll.
-              Every effect here can be tailored to your brand and dropped into your site.
+              Websites {site.name} has built for real businesses — every one designed and
+              hand-coded from scratch — plus live effects we can add to yours.
             </p>
           </Reveal>
         </div>
       </section>
 
+      {/* ---------------- CLIENT SITES ---------------- */}
       <section style={{ paddingTop: 0 }}>
         <div className="container">
+          <div className="section-head">
+            <span className="eyebrow">Sites we've built</span>
+            <h2>Websites that are <span className="gradient-text">live right now</span>.</h2>
+          </div>
+          <div className="grid grid-2">
+            {work.map((w, i) => (
+              <WorkCard key={w.title} work={w} delay={(i % 2) * 80} />
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ---------------- EFFECTS DEMOS ---------------- */}
+      <section>
+        <div className="container">
+          <div className="section-head">
+            <span className="eyebrow">Effects showcase</span>
+            <h2>Live demos — move your cursor and <span className="gradient-text">play</span>.</h2>
+            <p className="lead">Every effect here can be tailored to your brand and dropped into your site.</p>
+          </div>
           <Reveal><EffectsShowcase /></Reveal>
         </div>
       </section>

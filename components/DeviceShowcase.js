@@ -202,7 +202,9 @@ export default function DeviceShowcase() {
         alt={screen === "phone" ? "" : `${w.title} website`}
         className={`ds-shot ds-shot--${screen}${w.imageFit === "contain" ? " ds-shot--contain" : ""}`}
         style={{ zIndex: N - i, background: w.imageFit === "contain" ? w.thumbBg : undefined }}
-        loading={i === 0 ? "eager" : "lazy"}
+        // laptop shots load up front: lazy images inside the pinned stage can
+        // still be blank when a fast scroll reaches their chapter
+        loading={screen === "laptop" || i === 0 ? "eager" : "lazy"}
         draggable={false}
         ref={(el) => (refStore.current[i] = el)}
       />
