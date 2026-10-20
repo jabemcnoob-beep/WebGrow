@@ -9,7 +9,7 @@ export default function Contact() {
   const router = useRouter();
   const plan = typeof router.query.plan === "string" ? router.query.plan : "";
   const deposit = router.query.deposit === "1";
-  const [form, setForm] = useState({ name: "", email: "", phone: "", job: "" });
+  const [form, setForm] = useState({ name: "", business: "", address: "", email: "", phone: "", job: "" });
 
   const set = (k) => (e) => setForm((f) => ({ ...f, [k]: e.target.value }));
 
@@ -17,13 +17,19 @@ export default function Contact() {
     e.preventDefault();
     const subject = encodeURIComponent(
       deposit
-        ? `Deposit request — ${plan} — ${form.name || "New client"}`
-        : `Free quote request — ${form.name || "New enquiry"}`
+        ? `Deposit request — ${plan} — ${form.business || form.name || "New client"}`
+        : `Free quote request — ${form.business || form.name || "New enquiry"}`
     );
     const body = encodeURIComponent(
-      `Name: ${form.name}\nEmail: ${form.email}\nPhone: ${form.phone}` +
+      `Name: ${form.name}` +
+        (form.business ? `\nBusiness name (bill to): ${form.business}` : "") +
+        (form.address ? `\nBusiness billing address: ${form.address}` : "") +
+        `\nEmail: ${form.email}\nPhone: ${form.phone}` +
         (plan ? `\nPlan of interest: ${plan}` : "") +
-        (deposit ? `\nPayment: 50% deposit now, 50% at launch — please send my deposit invoice.` : "") +
+        (deposit
+          ? `\nPayment: 50% deposit now, 50% at launch — please send my deposit invoice.` +
+            `\nInvoice purpose: business services (website design & development), billed to the business above.`
+          : "") +
         `\n\nJob needed:\n${form.job}`
     );
     window.location.href = `mailto:${site.email}?subject=${subject}&body=${body}`;
@@ -51,7 +57,8 @@ export default function Contact() {
               {deposit && (
                 <p className="note" style={{ marginTop: 12 }}>
                   Send this form and {site.founder} will email you a secure Stripe invoice for your
-                  50% deposit. The other half is only due at launch, after you approve your site.
+                  50% deposit, billed to your business as website design &amp; development services.
+                  The other half is only due at launch, after you approve your site.
                 </p>
               )}
             </Reveal>
@@ -62,6 +69,18 @@ export default function Contact() {
                   <label htmlFor="name">Name</label>
                   <input id="name" required value={form.name} onChange={set("name")} placeholder="Jane Smith" />
                 </div>
+                <div className="field">
+                  <label htmlFor="business">
+                    Business name{deposit ? " (appears on your invoice)" : ""}
+                  </label>
+                  <input id="business" required={deposit} value={form.business} onChange={set("business")} placeholder="Smith's Cleaning LLC" />
+                </div>
+                {deposit && (
+                  <div className="field">
+                    <label htmlFor="address">Business billing address</label>
+                    <input id="address" value={form.address} onChange={set("address")} placeholder="123 Main St, Cottonwood, AZ 86326" />
+                  </div>
+                )}
                 <div className="row2">
                   <div className="field">
                     <label htmlFor="email">Email</label>

@@ -307,6 +307,7 @@ export const pricing = {
   ],
   faqs: [
     { q: "How does payment work?", a: "Half up front, half at launch. A 50% deposit reserves your spot and starts the build. Once you've reviewed and approved your finished site, I email you a Stripe invoice for the remaining 50% — pay it, and your site goes live. Prefer to pay in full up front? That's an option on every plan too." },
+    { q: "Can I get a business invoice?", a: "Yes — every invoice is billed to your business name and itemized as website design & development services, with a Stripe receipt for each payment. That's the paperwork your accountant will want if you're writing it off as a business expense." },
     { q: "How long does a build take?", a: "Most websites ship within a 60-day turnaround, and often much faster depending on scope. You'll get a clear timeline before we start." },
     { q: "Do I own the site?", a: "Completely. We hand over a clean, fast site and deploy it to your own hosting. No platform lock-in, no monthly ransom." },
     { q: "What's the difference between the plans?", a: "Custom Website is the core build. Website + SEO & Launch adds full search optimization and a hands-on launch. Custom / Let's Talk is for e-commerce, booking, or anything more ambitious." },

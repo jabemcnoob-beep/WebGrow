@@ -20,8 +20,12 @@ function Invoice({ tier }) {
   return (
     <div className="invoice" aria-label={`Payment schedule for ${tier.name}`}>
       <div className="invoice-head">
-        <span>Invoice</span>
+        <span>Business invoice</span>
         <span>50 / 50</span>
+      </div>
+      <div className="invoice-for">
+        <b>Website design &amp; development — business services</b>
+        <small>Billed to your business name · itemized Stripe invoice &amp; receipt</small>
       </div>
       <div className="invoice-row">
         <span>

@@ -787,6 +787,9 @@ section { position: relative; padding-block: clamp(72px, 11vw, 140px); }
   padding-bottom: 8px;
   border-bottom: 1px solid var(--border);
 }
+.invoice-for { padding: 9px 0; border-bottom: 1px solid rgba(255, 255, 255, 0.06); }
+.invoice-for b { display: block; font-size: 0.82rem; font-weight: 600; color: var(--text); }
+.invoice-for small { display: block; font-size: 0.74rem; color: var(--faint); }
 .invoice-row, .invoice-total {
   display: flex;
   justify-content: space-between;
@@ -1042,10 +1045,12 @@ section { position: relative; padding-block: clamp(72px, 11vw, 140px); }
 .page-hero .lead { margin-top: 0.4em; }
 
 /* contact form */
-.form { display: grid; gap: 16px; max-width: 540px; }
-.form .row2 { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+/* minmax(0, …) lets inputs shrink below their intrinsic width, otherwise the
+   two-up row forces the form wider than its own card */
+.form { display: grid; grid-template-columns: minmax(0, 1fr); gap: 16px; max-width: 540px; }
+.form .row2 { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 16px; }
 @media (max-width: 520px) { .form .row2 { grid-template-columns: 1fr; } }
-.field { display: grid; gap: 7px; }
+.field { display: grid; grid-template-columns: minmax(0, 1fr); gap: 7px; }
 .field label { font-size: 0.82rem; color: var(--muted); font-weight: 500; }
 .field input, .field textarea, .field select {
   font-family: var(--font-body); font-size: 0.98rem; color: var(--text);
