@@ -34,7 +34,8 @@ export default function Examples() {
           </div>
           <div className="grid grid-2">
             {work.map((w, i) => (
-              <WorkCard key={w.title} work={w} delay={(i % 2) * 80} />
+              // an odd count would strand the last card alone; the newest spans the row instead
+              <WorkCard key={w.title} work={w} delay={(i % 2) * 80} wide={i === 0 && work.length % 2 === 1} />
             ))}
           </div>
         </div>

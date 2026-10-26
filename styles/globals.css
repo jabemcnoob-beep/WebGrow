@@ -767,6 +767,41 @@ section { position: relative; padding-block: clamp(72px, 11vw, 140px); }
 .price-card li.off { color: var(--faint); }
 .price-card li.off svg { color: var(--faint); }
 
+/* 50/50 split headline on each plan card: deposit leads, total stays visible */
+.price-card .split-tag {
+  align-self: flex-start;
+  margin-top: 14px;
+  font-family: var(--font-mono);
+  font-size: 0.66rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: #000;
+  background: var(--accent);
+  border-radius: 999px;
+  padding: 0.35em 0.85em;
+  font-weight: 700;
+  box-shadow: 0 0 14px rgba(255, 31, 143, 0.45);
+}
+.price-card .split-later {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px 12px;
+  margin: 0 0 1rem;
+  font-size: 0.95rem;
+  color: var(--text);
+  font-variant-numeric: tabular-nums;
+}
+.price-card .split-total {
+  font-family: var(--font-mono);
+  font-size: 0.74rem;
+  letter-spacing: 0.08em;
+  color: #fff;
+  border: 1px solid var(--border-strong);
+  border-radius: 999px;
+  padding: 0.25em 0.75em;
+}
+
 /* 50/50 invoice on each plan card */
 .invoice {
   margin-top: 18px;
@@ -939,6 +974,12 @@ section { position: relative; padding-block: clamp(72px, 11vw, 140px); }
 .work-card .metrics { display: flex; gap: 28px; margin-top: 18px; }
 .work-card .metrics .num { font-family: var(--font-display); font-weight: 700; font-size: 1.6rem; background: var(--grad); -webkit-background-clip: text; background-clip: text; color: transparent; }
 .work-card .metrics .lbl { font-size: 0.8rem; color: var(--faint); }
+/* featured card spanning the whole grid row: screenshot left, text right */
+@media (min-width: 901px) {
+  .work-card--wide { grid-column: 1 / -1; display: grid; grid-template-columns: 1.25fr 1fr; }
+  .work-card--wide .thumb { aspect-ratio: auto; height: 440px; border-bottom: 0; border-right: 1px solid var(--border); }
+  .work-card--wide .body { justify-content: center; }
+}
 .work-link { display: inline-flex; align-items: center; gap: 8px; transition: color 0.2s ease; }
 .work-link:hover { color: var(--accent-2); }
 .work-link .ext { color: var(--accent); font-size: 0.78em; }

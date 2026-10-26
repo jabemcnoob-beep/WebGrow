@@ -1,14 +1,15 @@
-// Captures fresh, tall screenshots of the four client sites for the device
-// showcase / work cards, using the locally installed Edge via puppeteer-core.
+// Captures fresh, tall screenshots of the client sites for the device
+// showcase / work cards, using the locally installed Chrome via puppeteer-core.
 // Full-page capture (so vh-based sections render correctly), cropped to at
 // most ~3.2 viewport-heights and re-encoded as JPEG to keep files lean.
-//   node scripts/capture-work.js
+//   node scripts/capture-work.js            (all sites)
+//   node scripts/capture-work.js pasture    (only sites whose URL contains "pasture")
 const puppeteer = require("puppeteer-core");
 const { createCanvas, loadImage } = require("@napi-rs/canvas");
 const fs = require("fs");
 const path = require("path");
 
-const EDGE = "C:/Program Files (x86)/Microsoft/Edge/Application/msedge.exe";
+const BROWSER = "C:/Program Files/Google/Chrome/Application/chrome.exe";
 const OUT = path.join(__dirname, "..", "public");
 const WIDTH = 1280;
 const VIEW_H = 800;
@@ -20,16 +21,18 @@ const SITES = [
   { url: "https://www.bestcleanpros.com", file: "work-best-clean-pros.jpg" },
   { url: "https://thehandyfiremen.com", file: "work-handy-firemen.jpg" },
   { url: "https://almostsedona.com", file: "work-almost-sedona.jpg" },
+  { url: "https://pasture-paw.com", file: "work-pasture-paw.jpg" },
 ];
 
 (async () => {
   const browser = await puppeteer.launch({
-    executablePath: EDGE,
+    executablePath: BROWSER,
     headless: "new",
     args: ["--hide-scrollbars", "--force-device-scale-factor=1"],
   });
 
-  for (const site of SITES) {
+  const only = process.argv[2];
+  for (const site of SITES.filter((s) => !only || s.url.includes(only))) {
     try {
     const page = await browser.newPage();
     await page.setViewport({ width: WIDTH, height: VIEW_H, deviceScaleFactor: 1 });

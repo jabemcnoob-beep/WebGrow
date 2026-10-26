@@ -1,10 +1,11 @@
 import Reveal from "./Reveal";
 
 // A single case-study card. If `work.url` is set, the title and a
-// "Visit live site" button link out to the real site.
-export default function WorkCard({ work: w, delay = 0 }) {
+// "Visit live site" button link out to the real site. `wide` spans the
+// full grid row with the screenshot beside the text (desktop only).
+export default function WorkCard({ work: w, delay = 0, wide = false }) {
   return (
-    <Reveal className="card work-card" delay={delay}>
+    <Reveal className={`card work-card${wide ? " work-card--wide" : ""}`} delay={delay}>
       <div className="thumb" style={w.thumbBg ? { background: w.thumbBg } : undefined}>
         {w.image ? (
           <img

@@ -16,7 +16,7 @@ export default function NextSteps({ planKey }) {
     `mailto:${site.email}` +
     `?subject=${encodeURIComponent(`My WebGrow project details — ${data.plan}`)}` +
     `&body=${encodeURIComponent(
-      `Hi Remington! I just purchased the ${data.plan} (${data.price}). Here are my details:\n\n` +
+      `Hi Remington! I just purchased the ${data.plan} (${data.price} plan). Here are my details:\n\n` +
         data.steps.map((s, i) => `${i + 1}. ${s.title}:\n`).join("\n")
     )}`;
 
@@ -30,7 +30,7 @@ export default function NextSteps({ planKey }) {
             <span className="pill" style={{ marginBottom: 18, color: "var(--accent-2)" }}>
               <Check /> Payment received
             </span>
-            <div className="eyebrow">{data.plan} · {data.price}</div>
+            <div className="eyebrow">{data.plan} · {data.price} plan</div>
             <h1>{data.heading}</h1>
             <p className="lead">{data.intro}</p>
           </Reveal>

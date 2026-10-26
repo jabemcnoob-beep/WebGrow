@@ -158,6 +158,14 @@ export const timeline = [
 
 export const work = [
   {
+    title: "Pasture & Paw",
+    url: "https://pasture-paw.com",
+    image: "/work-pasture-paw.jpg",
+    tags: ["Pet & Ranch Sitting", "Built from scratch", "Booking & Local SEO"],
+    summary: "Built from scratch for owner Ten Rendon's pet, horse & ranch-sitting business in New River, Arizona — a warm, photography-forward site with clear rates, a step-by-step booking request, and local SEO reaching towns across North Phoenix.",
+    // metrics intentionally omitted until real numbers are provided
+  },
+  {
     title: "AZ Wildfire Mitigation",
     url: "https://www.azwildfiremitigation.com",
     image: "/work-az-wildfire.jpg",
@@ -228,7 +236,7 @@ export const reviews = [
 export const pricing = {
   eyebrow: "Super transparent pricing",
   heading: "Plans built to grow with you.",
-  sub: "Premium, custom websites built personally for your business. No templates, no hidden fees — just clean, fast, beautiful design that works.",
+  sub: "Premium, custom websites built personally for your business. Pay half now and half when your site launches — no templates, no hidden fees.",
   // ---- "Please read before purchasing" — collapsible pre-purchase note ----
   hosting: {
     title: "Please read before purchasing",

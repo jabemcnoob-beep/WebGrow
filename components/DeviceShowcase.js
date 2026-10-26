@@ -211,7 +211,7 @@ export default function DeviceShowcase() {
     ));
 
   return (
-    <div className="ds-stage" ref={stageRef}>
+    <div className="ds-stage" ref={stageRef} style={{ "--ds-n": N }}>
       <div className="ds-sticky">
         <div className="ds-head">
           <span className="eyebrow" style={{ justifyContent: "center" }}>Real client work</span>

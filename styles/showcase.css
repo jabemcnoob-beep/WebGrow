@@ -5,9 +5,10 @@
    states so the section renders sensibly on the server / without JS.
    ============================================================ */
 
+/* scroll length scales with the number of projects (--ds-n, set inline) */
 .ds-stage {
   position: relative;
-  height: 520vh;
+  height: calc(var(--ds-n, 4) * 130vh);
 }
 
 .ds-sticky {
@@ -365,7 +366,7 @@
 /* ---------- ≤760px ---------- */
 
 @media (max-width: 760px) {
-  .ds-stage { height: 440vh; }
+  .ds-stage { height: calc(var(--ds-n, 4) * 110vh); }
 
   .ds-laptop { width: 88vw; }
 

@@ -92,10 +92,15 @@ export default function Pricing() {
               <Reveal key={tier.id} className={`price-card ${tier.featured ? "featured" : ""}`} delay={i * 70}>
                 {tier.badge && <span className="badge">{tier.badge}</span>}
                 <span className="tier">{tier.name}</span>
+                <span className="split-tag">Pay 50% now · 50% at launch</span>
                 <div className="amount">
-                  <span className="val">{tier.price}</span>
-                  <span className="per">one-time</span>
+                  <span className="val">{money(toNumber(tier.price) / 2)}</span>
+                  <span className="per">today</span>
                 </div>
+                <p className="split-later">
+                  + {money(toNumber(tier.price) / 2)} at launch
+                  <span className="split-total">{tier.price} total</span>
+                </p>
                 <p className="desc">{tier.tagline}</p>
 
                 <Invoice tier={tier} />
