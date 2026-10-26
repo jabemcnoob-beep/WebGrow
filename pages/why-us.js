@@ -6,6 +6,7 @@ import Spotlight from "@/components/Spotlight";
 import SerpClimb from "@/components/SerpClimb";
 import { Arrow } from "@/components/Icon";
 import { site, values, timeline, stats, founderQuote } from "@/data/site";
+import PageBanner from "@/components/PageBanner";
 
 // The three SEO pillars — why WebGrow sites actually rank.
 const PILLARS = [
@@ -59,6 +60,8 @@ export default function WhyUs() {
           </Reveal>
         </div>
       </section>
+
+      <PageBanner src="/media/why-us.mp4" poster="/media/why-us.jpg" alt="Golden hour over the Verde Valley and Sedona red rocks" tag="Rooted in the Verde Valley" focus="62% 50%" />
 
       {/* ---------------- VALUES ---------------- */}
       <section style={{ paddingTop: 0 }}>

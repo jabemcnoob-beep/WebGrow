@@ -4,6 +4,7 @@ import Reveal from "@/components/Reveal";
 import CtaBand from "@/components/CtaBand";
 import { Arrow, Check } from "@/components/Icon";
 import { site, services } from "@/data/site";
+import PageBanner from "@/components/PageBanner";
 
 export default function Services() {
   return (
@@ -22,6 +23,8 @@ export default function Services() {
           </Reveal>
         </div>
       </section>
+
+      <PageBanner src="/media/services.mp4" poster="/media/services.jpg" alt="A designer sketching website wireframes in a notebook" tag="Every site starts on paper" focus="68% 60%" />
 
       {/* ---------------- WHAT WE DELIVER ---------------- */}
       <section style={{ paddingTop: 0 }}>

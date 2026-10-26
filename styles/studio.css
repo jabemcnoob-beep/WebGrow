@@ -319,3 +319,12 @@
 @media (prefers-reduced-motion: reduce) {
   .ink-text .ink-w { color: var(--heading); }
 }
+
+/* ============================================================
+   PageBanner — wide looping clip under inner-page headlines
+   ============================================================ */
+.page-banner-wrap { margin-bottom: clamp(48px, 8vw, 96px); }
+.page-banner.ph-frame { aspect-ratio: 21 / 9; transform-origin: 50% 0; }
+@media (max-width: 760px) { .page-banner.ph-frame { aspect-ratio: 4 / 5; } }
+.page-banner .lv > img,
+.page-banner .lv > video { object-position: var(--focus, 50% 50%); }

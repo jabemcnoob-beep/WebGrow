@@ -4,6 +4,7 @@ import Seo from "@/components/Seo";
 import Reveal from "@/components/Reveal";
 import { Arrow } from "@/components/Icon";
 import { site } from "@/data/site";
+import PageBanner from "@/components/PageBanner";
 
 export default function Contact() {
   const router = useRouter();
@@ -103,6 +104,8 @@ export default function Contact() {
           </div>
         </div>
       </section>
+
+      <PageBanner src="/media/contact.mp4" poster="/media/contact.jpg" alt="A coffee mug, notebook and phone on a sunny desk" tag="Let’s talk over coffee" focus="66% 45%" />
     </>
   );
 }

@@ -3,6 +3,7 @@ import Reveal from "@/components/Reveal";
 import CtaBand from "@/components/CtaBand";
 import WorkCard from "@/components/WorkCard";
 import { site, work } from "@/data/site";
+import PageBanner from "@/components/PageBanner";
 
 export default function Work() {
   return (
@@ -21,6 +22,8 @@ export default function Work() {
           </Reveal>
         </div>
       </section>
+
+      <PageBanner src="/media/work.mp4" poster="/media/work.jpg" alt="A hand scrolling a local business website on a phone" tag="Built for phones first" focus="74% 50%" />
 
       <section style={{ paddingTop: 0 }}>
         <div className="container">
