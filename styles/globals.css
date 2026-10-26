@@ -1264,7 +1264,18 @@ html.has-cursor input, html.has-cursor textarea, html.has-cursor select { cursor
 
 /* ---- header v3 ---- */
 .nav-right { display: flex; align-items: center; gap: 14px; }
+.nav-cta-short { display: none; }
+/* phones: a compact pill so buying stays one tap away */
 @media (max-width: 560px) {
+  .nav-cta { margin: 0; padding: 9px 14px; font-size: 0.85rem; }
+  .nav-cta-long { display: none; }
+  .nav-cta-short { display: inline; }
+}
+@media (max-width: 380px) {
+  .nav-right { gap: 8px; }
+  .nav-cta { padding: 8px 12px; }
+}
+@media (max-width: 340px) {
   .nav-cta { display: none !important; }
 }
 .menu-btn {

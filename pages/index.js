@@ -14,6 +14,7 @@ import SplitWords from "@/components/SplitWords";
 import InkText from "@/components/InkText";
 import ScrollFrame from "@/components/ScrollFrame";
 import RiseBand from "@/components/RiseBand";
+import QuoteSection from "@/components/QuoteSection";
 import { Arrow } from "@/components/Icon";
 import { site, stats, founderQuote, marquee } from "@/data/site";
 
@@ -132,6 +133,9 @@ export default function Home() {
         </div>
       </section>
 
+      {/* ================= free quote ================= */}
+      <QuoteSection />
+
       {/* ================= finale over the prism ================= */}
       <section className="ph-finale">
         <div className="ph-media">
@@ -139,15 +143,14 @@ export default function Home() {
         </div>
         <div className="container">
           <Reveal>
-            <span className="eyebrow" style={{ justifyContent: "center" }}>Let's talk</span>
+            <span className="eyebrow" style={{ justifyContent: "center" }}>Ready when you are</span>
             <SplitWords parts={["Your website should be your best salesperson."]} />
             <p className="lead" style={{ maxWidth: "50ch" }}>
-              Tell us about your business and {site.founder} will personally craft a quote. Pay half
-              to start, half when you love it.
+              Pick a package and get started today. Pay half to start, half when you love it.
             </p>
             <div className="row">
-              <Magnetic><Link href="/contact" className="btn btn-primary btn-lg">Get a free quote <Arrow /></Link></Magnetic>
-              <Magnetic><Link href="/pricing" className="btn btn-ink btn-lg">See pricing</Link></Magnetic>
+              <Magnetic><Link href="/pricing" className="btn btn-primary btn-lg">Buy your website <Arrow /></Link></Magnetic>
+              <Magnetic><Link href="#free-quote" className="btn btn-ink btn-lg">Get a free quote</Link></Magnetic>
             </div>
           </Reveal>
         </div>

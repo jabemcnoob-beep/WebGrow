@@ -56,8 +56,9 @@ export default function Header() {
           </Link>
 
           <div className="nav-right" style={{ position: "relative", zIndex: 101 }}>
-            <Link href="/contact" className="btn btn-primary nav-cta" style={{ display: open ? "none" : undefined }}>
-              Get a free quote
+            <Link href="/pricing" className="btn btn-primary nav-cta" aria-label="Buy your website" style={{ display: open ? "none" : undefined }}>
+              <span className="nav-cta-long">Buy your website</span>
+              <span className="nav-cta-short" aria-hidden="true">Buy now</span>
             </Link>
             <button
               className={`menu-btn ${open ? "open" : ""}`}

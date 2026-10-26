@@ -328,3 +328,19 @@
 @media (max-width: 760px) { .page-banner.ph-frame { aspect-ratio: 4 / 5; } }
 .page-banner .lv > img,
 .page-banner .lv > video { object-position: var(--focus, 50% 50%); }
+
+/* ============================================================
+   QuoteSection — homepage free-quote block
+   ============================================================ */
+.quote-steps { list-style: none; margin: 0 0 1.8rem; padding: 0; display: grid; gap: 14px; }
+.quote-steps li {
+  display: flex; gap: 14px; align-items: baseline;
+  padding: 14px 16px; border: 1px solid var(--border); border-radius: 16px;
+  background: var(--card-bg);
+}
+.quote-steps b { font-family: var(--font-mono); font-size: 0.72rem; letter-spacing: 0.1em; color: var(--accent-ink); flex: none; }
+.quote-steps strong { display: block; color: var(--heading); font-family: var(--font-display); font-size: 1.05rem; margin-bottom: 2px; }
+.quote-steps span { color: var(--muted); font-size: 0.95rem; line-height: 1.5; }
+.quote-ctas { display: flex; align-items: center; gap: 18px; flex-wrap: wrap; }
+.quote-mail { color: var(--muted); font-size: 0.92rem; text-decoration: underline; text-underline-offset: 3px; }
+.quote-mail:hover { color: var(--accent-ink); }
