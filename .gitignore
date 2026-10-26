@@ -28,3 +28,6 @@ npm-debug.log*
 
 # local marketing assets (not part of the public site repo)
 /marketing/
+
+# raw Higgsfield generations (curated copies go in public/)
+/higgsfield/

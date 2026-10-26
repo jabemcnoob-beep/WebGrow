@@ -54,12 +54,12 @@ export default function Document() {
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
         {/* WebGrow type system:
-            Display/headings — Space Grotesk · Body — Inter · Mono accents — Space Mono */}
+            Display/headings — Bricolage Grotesque · Body — Inter · Mono accents — Space Mono */}
         <link
-          href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600;700&family=Space+Mono:wght@400;700&display=swap"
+          href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=Space+Grotesk:wght@500;700&family=Inter:wght@400;500;600;700&family=Space+Mono:wght@400;700&display=swap"
           rel="stylesheet"
         />
-        <meta name="theme-color" content="#050505" />
+        <meta name="theme-color" content="#fafaf8" />
         <meta name="author" content={site.founder} />
 
         {/* Local geo signals */}

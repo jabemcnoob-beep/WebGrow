@@ -283,7 +283,7 @@
    clickable — JS toggles pointer-events / aria-hidden / tabIndex. */
 .ds-panels {
   position: relative;
-  min-height: 132px;
+  min-height: 196px; /* fits three rows of tags + the visit button */
 }
 
 .ds-panel {
@@ -360,7 +360,7 @@
   .ds-index { justify-content: center; }
   .ds-pills { justify-content: center; }
   .ds-titles { min-height: calc(clamp(1.6rem, 3vw, 2.4rem) * 1.6); }
-  .ds-panels { min-height: 118px; }
+  .ds-panels { min-height: 150px; }
 }
 
 /* ---------- ≤760px ---------- */
@@ -385,5 +385,5 @@
 
 @media (max-width: 560px) {
   .ds-phone { display: none; }
-  .ds-panels { min-height: 128px; }
+  .ds-panels { min-height: 170px; }
 }

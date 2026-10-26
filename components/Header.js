@@ -39,7 +39,7 @@ export default function Header() {
 
   return (
     <>
-      <header className={`nav ${scrolled && !open ? "scrolled" : ""}`}>
+      <header className={`nav ${scrolled && !open ? "scrolled" : ""} ${open ? "theme-dark is-open" : ""}`}>
         <div className="container">
           <Link href="/" className="brand" aria-label={`${site.name} home`} style={{ position: "relative", zIndex: 101 }}>
             {hasLogo ? (

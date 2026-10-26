@@ -5,6 +5,7 @@ import "@/styles/effects.css";
 import "@/styles/hero.css";
 import "@/styles/showcase.css";
 import "@/styles/whyus.css";
+import "@/styles/studio.css";
 import Layout from "@/components/Layout";
 
 const normalize = (url) => (url.split("?")[0].split("#")[0].replace(/\/+$/, "") || "/");

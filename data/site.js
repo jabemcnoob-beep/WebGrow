@@ -161,6 +161,7 @@ export const work = [
     title: "Pasture & Paw",
     url: "https://pasture-paw.com",
     image: "/work-pasture-paw.jpg",
+    mobileImage: "/media/pasture-paw-mobile.jpg", // real phone layout, used where a phone-sized view fits better
     tags: ["Pet & Ranch Sitting", "Built from scratch", "Booking & Local SEO"],
     summary: "Built from scratch for owner Ten Rendon's pet, horse & ranch-sitting business in New River, Arizona — a warm, photography-forward site with clear rates, a step-by-step booking request, and local SEO reaching towns across North Phoenix.",
     // metrics intentionally omitted until real numbers are provided

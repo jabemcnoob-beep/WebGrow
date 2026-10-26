@@ -3,85 +3,116 @@ import Seo from "@/components/Seo";
 import Reveal from "@/components/Reveal";
 import Magnetic from "@/components/Magnetic";
 import Counter from "@/components/Counter";
-import HeroV4 from "@/components/HeroV4";
-import Watermark from "@/components/Watermark";
-import BuildSequence from "@/components/BuildSequence";
+import StudioHero from "@/components/StudioHero";
+import DriftImage from "@/components/DriftImage";
 import DeviceShowcase from "@/components/DeviceShowcase";
 import ServicesRail from "@/components/ServicesRail";
-import WorkGallery from "@/components/WorkGallery";
 import ReviewsBelt from "@/components/ReviewsBelt";
 import { Arrow } from "@/components/Icon";
-import { site, stats, founderQuote, effects } from "@/data/site";
+import { site, stats, founderQuote, marquee } from "@/data/site";
 
 export default function Home() {
   return (
     <>
       <Seo path="/" />
 
-      {/* ================= ACT 1 — constellation hero ================= */}
-      <HeroV4 />
+      {/* ================= ACT 1 — studio push-in, through the screen ================= */}
+      <StudioHero />
 
-      {/* ================= ACT 2 — the build sequence ================= */}
-      <BuildSequence />
+      {/* ================= results ticker ================= */}
+      <div className="marquee" aria-hidden>
+        <div className="marquee-track">
+          {[...marquee, ...marquee].map((m, i) => (
+            <span className="marquee-item" key={i}>{m}</span>
+          ))}
+        </div>
+      </div>
 
-      {/* ================= ACT 3 — every screen ================= */}
-      <DeviceShowcase />
+      {/* ================= ACT 2 — it starts on paper ================= */}
+      <section>
+        <div className="container ph-split">
+          <Reveal className="ph-frame">
+            <DriftImage src="/media/desk-sketches.jpg" alt="Hand-drawn website wireframes in a sketchbook next to a laptop" />
+            <span className="ph-tag">Every site starts here</span>
+          </Reveal>
+          <Reveal className="ph-copy" delay={80}>
+            <span className="eyebrow">How we work</span>
+            <h2>Designed by hand. <span className="gradient-text">Built to perform.</span></h2>
+            <p className="lead">
+              No templates and no page builders. Every {site.name} site is sketched around your
+              customers first, then hand-coded so it loads fast and shows up on Google.
+            </p>
+            <ul className="ph-list">
+              <li><b>01</b> Strategy — who your customers are and what makes them say yes</li>
+              <li><b>02</b> Design — a look that's unmistakably yours</li>
+              <li><b>03</b> Build — clean, lightning-fast code with SEO built in</li>
+              <li><b>04</b> Launch — domain, Google setup, and support after go-live</li>
+            </ul>
+            <Link href="/services" className="btn btn-ghost">Explore services <Arrow /></Link>
+          </Reveal>
+        </div>
+      </section>
 
-      {/* ================= stats counters ================= */}
-      <section style={{ paddingBlock: 0 }}>
+      {/* ================= ACT 3 — real work on every screen (black band) ================= */}
+      <div className="theme-dark">
+        <DeviceShowcase />
+      </div>
+
+      {/* ================= ACT 4 — your customers are on their phones ================= */}
+      <section>
         <div className="container">
-          <Reveal className="stats-k">
+          <div className="ph-split flip">
+            <Reveal className="ph-frame">
+              <DriftImage src="/media/cafe-owner.jpg" alt="A cafe owner smiling at her phone behind the counter" />
+              <span className="ph-tag">Built for local business</span>
+            </Reveal>
+            <Reveal className="ph-copy" delay={80}>
+              <span className="eyebrow">Why it matters</span>
+              <h2>Your next customer is <span className="gradient-text">searching right now.</span></h2>
+              <p className="lead">
+                They're on their phone, comparing you to the shop down the road. The business with
+                the fast, trustworthy, easy-to-book website wins — we make sure that's you.
+              </p>
+              <Link href="/why-us" className="btn btn-ghost">Why WebGrow <Arrow /></Link>
+            </Reveal>
+          </div>
+          <Reveal className="ph-stats">
             {stats.map((s) => (
-              <div className="stat-k" key={s.label}>
-                <div className="num"><span className="accent"><Counter value={s.num} /></span></div>
-                <div className="label">{s.label}</div>
+              <div key={s.label}>
+                <div className="n"><Counter value={s.num} /></div>
+                <div className="l">{s.label}</div>
               </div>
             ))}
           </Reveal>
         </div>
       </section>
 
-      {/* ================= ACT 4 — horizontal services rail ================= */}
-      <ServicesRail />
-
-      {/* ================= ACT 5 — work index with floating previews ================= */}
-      <section className="fx-wm-clip">
-        <Watermark word="Work" />
-        <div className="container" style={{ position: "relative" }}>
-          <div className="section-head" style={{ display: "flex", alignItems: "flex-end", justifyContent: "space-between", gap: 24, maxWidth: "none", flexWrap: "wrap" }}>
-            <div>
-              <span className="eyebrow">Selected work</span>
-              <h2 style={{ marginBottom: 0 }}>Real sites. <span className="gradient-text">Real growth.</span></h2>
-            </div>
-            <Link href="/work" className="btn btn-ghost">All case studies <Arrow /></Link>
-          </div>
-          <WorkGallery />
+      {/* ================= ACT 5 — local studio, Sedona light ================= */}
+      <section className="ph-band" style={{ paddingBlock: 0 }}>
+        <div className="ph-media">
+          <DriftImage src="/media/sedona-window.jpg" alt="A studio desk with a laptop facing Sedona's red rocks at golden hour" range={12} />
         </div>
-      </section>
-
-      {/* ================= effects strip ================= */}
-      <section style={{ paddingTop: 0 }}>
         <div className="container">
-          <Reveal>
-            <div style={{ display: "flex", alignItems: "center", gap: 14, flexWrap: "wrap" }}>
-              <span className="eyebrow" style={{ margin: 0 }}>The wow factor</span>
-              {effects.slice(0, 6).map((e) => (
-                <span className="pill" key={e.kind}>{e.title}</span>
-              ))}
-              <Link href="/examples" className="work-link" style={{ color: "var(--accent)" }}>
-                Play with live demos <Arrow />
-              </Link>
-            </div>
+          <Reveal className="ph-card">
+            <span className="eyebrow">Local studio · {site.area}</span>
+            <h2>Made in the Verde Valley.</h2>
+            <p>
+              {site.name} is {site.founder}'s studio — one person, start to finish, building sites
+              for Sedona, Cottonwood, Camp Verde and businesses well beyond Arizona. You talk to
+              the person actually building your site.
+            </p>
           </Reveal>
         </div>
       </section>
 
-      {/* ================= ACT 6 — reviews belt ================= */}
-      <section className="fx-wm-clip" style={{ paddingTop: 0 }}>
-        <Watermark word="Loved" />
-        <div className="container" style={{ position: "relative" }}>
+      {/* ================= ACT 6 — services rail ================= */}
+      <ServicesRail />
+
+      {/* ================= ACT 7 — reviews ================= */}
+      <section style={{ paddingTop: 0 }}>
+        <div className="container">
           <div className="section-head">
-            <span className="eyebrow">Loved by founders</span>
+            <span className="eyebrow">Loved by owners</span>
             <h2>Five stars, <span className="gradient-text">every time</span>.</h2>
           </div>
         </div>
@@ -95,29 +126,31 @@ export default function Home() {
       <section style={{ paddingTop: 0 }}>
         <div className="container">
           <Reveal className="center">
-            <p style={{ fontFamily: "var(--font-display)", fontWeight: 700, fontSize: "clamp(1.6rem, 3.6vw, 2.6rem)", lineHeight: 1.2, letterSpacing: "-0.02em", color: "var(--text)", maxWidth: "20ch", margin: "0 auto 1rem" }}>
-              “{founderQuote.quote}”
-            </p>
+            <p className="quote-xl">“{founderQuote.quote}”</p>
             <p className="eyebrow" style={{ justifyContent: "center" }}>— {founderQuote.by}</p>
           </Reveal>
         </div>
       </section>
 
-      {/* ================= finale ================= */}
-      <section className="finale" style={{ paddingBlock: 0 }}>
-        <span className="ring" aria-hidden />
-        <span className="ring r2" aria-hidden />
-        <Reveal className="inner">
-          <span className="eyebrow" style={{ justifyContent: "center" }}>Let's talk</span>
-          <h2>Your website should be your <span className="gradient-text">best salesperson</span>.</h2>
-          <p className="lead" style={{ maxWidth: "52ch" }}>
-            Tell us a bit about your business and {site.founder} will personally craft a quote for you.
-          </p>
-          <div className="finale-actions">
-            <Magnetic><Link href="/contact" className="btn btn-primary btn-lg">Get a free quote <Arrow /></Link></Magnetic>
-            <Magnetic><Link href="/pricing" className="btn btn-white btn-lg">See pricing</Link></Magnetic>
-          </div>
-        </Reveal>
+      {/* ================= finale over the prism ================= */}
+      <section className="ph-finale">
+        <div className="ph-media">
+          <img src="/media/prism.jpg" alt="" loading="lazy" />
+        </div>
+        <div className="container">
+          <Reveal>
+            <span className="eyebrow" style={{ justifyContent: "center" }}>Let's talk</span>
+            <h2>Your website should be your best salesperson.</h2>
+            <p className="lead" style={{ maxWidth: "50ch" }}>
+              Tell us about your business and {site.founder} will personally craft a quote. Pay half
+              to start, half when you love it.
+            </p>
+            <div className="row">
+              <Magnetic><Link href="/contact" className="btn btn-primary btn-lg">Get a free quote <Arrow /></Link></Magnetic>
+              <Magnetic><Link href="/pricing" className="btn btn-ink btn-lg">See pricing</Link></Magnetic>
+            </div>
+          </Reveal>
+        </div>
       </section>
     </>
   );
