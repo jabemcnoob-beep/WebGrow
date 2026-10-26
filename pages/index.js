@@ -5,6 +5,7 @@ import Magnetic from "@/components/Magnetic";
 import Counter from "@/components/Counter";
 import StudioHero from "@/components/StudioHero";
 import DriftImage from "@/components/DriftImage";
+import LoopVideo from "@/components/LoopVideo";
 import DeviceShowcase from "@/components/DeviceShowcase";
 import ServicesRail from "@/components/ServicesRail";
 import ReviewsBelt from "@/components/ReviewsBelt";
@@ -63,7 +64,7 @@ export default function Home() {
         <div className="container">
           <div className="ph-split flip">
             <Reveal className="ph-frame">
-              <DriftImage src="/media/cafe-owner.jpg" alt="A cafe owner smiling at her phone behind the counter" />
+              <LoopVideo src="/media/cafe-owner.mp4" poster="/media/cafe-owner.jpg" alt="A cafe owner smiling at her phone behind the counter" range={10} />
               <span className="ph-tag">Built for local business</span>
             </Reveal>
             <Reveal className="ph-copy" delay={80}>
@@ -90,7 +91,7 @@ export default function Home() {
       {/* ================= ACT 5 — local studio, Sedona light ================= */}
       <section className="ph-band" style={{ paddingBlock: 0 }}>
         <div className="ph-media">
-          <DriftImage src="/media/sedona-window.jpg" alt="A studio desk with a laptop facing Sedona's red rocks at golden hour" range={12} />
+          <LoopVideo src="/media/sedona-window.mp4" poster="/media/sedona-window.jpg" alt="A studio desk with a laptop facing Sedona's red rocks at golden hour" range={12} />
         </div>
         <div className="container">
           <Reveal className="ph-card">
@@ -135,7 +136,7 @@ export default function Home() {
       {/* ================= finale over the prism ================= */}
       <section className="ph-finale">
         <div className="ph-media">
-          <img src="/media/prism.jpg" alt="" loading="lazy" />
+          <LoopVideo src="/media/prism.mp4" poster="/media/prism.jpg" />
         </div>
         <div className="container">
           <Reveal>
