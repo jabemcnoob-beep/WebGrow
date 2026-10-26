@@ -1,5 +1,7 @@
 import { useEffect, useRef } from "react";
+import { subscribe, docTop } from "@/lib/scroll";
 import { work } from "@/data/site";
+import SplitWords from "@/components/SplitWords";
 import { Arrow } from "@/components/Icon";
 
 const clamp01 = (v) => Math.max(0, Math.min(1, v));
@@ -172,25 +174,25 @@ export default function DeviceShowcase() {
       return;
     }
 
-    let raf = 0;
-    const update = () => {
-      raf = 0;
-      const stage = stageRef.current;
-      if (!stage) return;
-      const rect = stage.getBoundingClientRect();
-      const total = stage.offsetHeight - window.innerHeight;
-      const scrolled = Math.min(Math.max(-rect.top, 0), total);
-      apply(total > 0 ? scrolled / total : 0);
-    };
-    const onScroll = () => { if (!raf) raf = requestAnimationFrame(update); };
-    update();
-    window.addEventListener("scroll", onScroll, { passive: true });
-    window.addEventListener("resize", onScroll);
-    return () => {
-      window.removeEventListener("scroll", onScroll);
-      window.removeEventListener("resize", onScroll);
-      if (raf) cancelAnimationFrame(raf);
-    };
+    // positions are measured on resize only; each frame is pure arithmetic,
+    // and frames where the clamped progress doesn't change write nothing
+    let top = 0, height = 0, lastP = -1;
+    return subscribe({
+      measure: () => {
+        const stage = stageRef.current;
+        if (!stage) return;
+        top = docTop(stage);
+        height = stage.offsetHeight;
+        lastP = -1;
+      },
+      update: (y, vh) => {
+        const total = height - vh;
+        const p = total > 0 ? Math.min(1, Math.max(0, (y - top) / total)) : 0;
+        if (p === lastP) return;
+        lastP = p;
+        apply(p);
+      },
+    });
   }, []);
 
   // Stack of the four project screenshots used inside both device viewports.
@@ -215,7 +217,7 @@ export default function DeviceShowcase() {
       <div className="ds-sticky">
         <div className="ds-head">
           <span className="eyebrow" style={{ justifyContent: "center" }}>Real client work</span>
-          <h2>Our work, on <span className="gradient-text">every screen</span>.</h2>
+          <SplitWords parts={["Our work, on", { accent: "every screen." }]} />
         </div>
 
         <div className="ds-body">

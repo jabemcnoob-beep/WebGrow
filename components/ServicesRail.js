@@ -1,6 +1,8 @@
 import { useEffect, useRef } from "react";
+import { subscribe, docTop, prefersReducedMotion } from "@/lib/scroll";
 import TiltCard from "@/components/TiltCard";
 import { services } from "@/data/site";
+import SplitWords from "@/components/SplitWords";
 
 /**
  * Horizontal-scroll services: the section pins and the card track slides
@@ -17,39 +19,29 @@ export default function ServicesRail() {
     const track = trackRef.current;
     if (!stage || !track) return;
 
-    const reduce = window.matchMedia?.("(prefers-reduced-motion: reduce)").matches;
-
-    let raf = 0;
-    const layout = () => {
-      if (window.innerWidth <= 760) { stage.style.height = ""; return false; }
-      const span = track.scrollWidth - window.innerWidth;
-      stage.style.height = `${window.innerHeight + span}px`;
-      return true;
-    };
-
-    const update = () => {
-      raf = 0;
-      if (!layout()) { track.style.transform = ""; return; }
-      const rect = stage.getBoundingClientRect();
-      const total = stage.offsetHeight - window.innerHeight;
-      const scrolled = Math.min(Math.max(-rect.top, 0), total);
-      const p = total > 0 ? scrolled / total : 0;
-      track.style.transform = `translateX(${-p * total}px)`;
-      if (barRef.current) barRef.current.style.transform = `scaleX(${p})`;
-    };
-    const onScroll = () => { if (!raf) raf = requestAnimationFrame(update); };
-
     // reduced motion: CSS renders the plain vertical list — no scrub needed
-    if (reduce) return;
+    if (prefersReducedMotion()) return;
 
-    update();
-    window.addEventListener("scroll", onScroll, { passive: true });
-    window.addEventListener("resize", onScroll);
-    return () => {
-      window.removeEventListener("scroll", onScroll);
-      window.removeEventListener("resize", onScroll);
-      if (raf) cancelAnimationFrame(raf);
-    };
+    // measure (on resize only): size the stage to the track's overflow
+    let top = 0, total = 0, active = false, lastP = -1;
+    return subscribe({
+      measure: () => {
+        active = window.innerWidth > 760;
+        if (!active) { stage.style.height = ""; track.style.transform = ""; return; }
+        total = track.scrollWidth - window.innerWidth;
+        stage.style.height = `${window.innerHeight + total}px`;
+        top = docTop(stage);
+        lastP = -1;
+      },
+      update: (y) => {
+        if (!active) return;
+        const p = total > 0 ? Math.min(1, Math.max(0, (y - top) / total)) : 0;
+        if (p === lastP) return;
+        lastP = p;
+        track.style.transform = `translate3d(${-p * total}px, 0, 0)`;
+        if (barRef.current) barRef.current.style.transform = `scaleX(${p})`;
+      },
+    });
   }, []);
 
   return (
@@ -57,7 +49,7 @@ export default function ServicesRail() {
       <div className="rail-sticky">
         <div className="rail-head">
           <span className="eyebrow">What we deliver</span>
-          <h2>Six disciplines. <span className="gradient-text">One obsession.</span></h2>
+          <SplitWords parts={["Six disciplines.", { accent: "One obsession." }]} />
         </div>
         <div className="rail-track" ref={trackRef}>
           {services.map((s, i) => (

@@ -3,6 +3,7 @@ import Link from "next/link";
 import Magnetic from "@/components/Magnetic";
 import { Arrow } from "@/components/Icon";
 import { site, work } from "@/data/site";
+import { subscribe, docTop, prefersReducedMotion } from "@/lib/scroll";
 
 const FRAMES = 72;
 const SRC = (i) => `/media/hero/${String(i).padStart(3, "0")}.jpg`;
@@ -60,12 +61,14 @@ export default function StudioHero() {
     if (!stage || !canvas) return;
     const ctx = canvas.getContext("2d");
     const imgs = new Array(FRAMES);
-    let loaded = 0, lastDrawn = -1, raf = 0, p = 0;
+    let loaded = 0, lastDrawn = -1, p = 0, lastP = -1;
     let geo = null; // cover geometry, recomputed on resize
+    let stageTop = 0, stageH = 0;
 
     const measure = () => {
       const vw = window.innerWidth, vh = window.innerHeight;
-      const dpr = Math.min(window.devicePixelRatio || 1, 2);
+      // 1.5x is visually identical for soft-focus footage and far fewer pixels
+      const dpr = Math.min(window.devicePixelRatio || 1, 1.5);
       canvas.width = Math.round(vw * dpr);
       canvas.height = Math.round(vh * dpr);
       const s = Math.max(vw / FW, vh / FH);
@@ -83,7 +86,10 @@ export default function StudioHero() {
       geo = { vw, vh, dpr, s, ox, oy, q, cx, cy, insetTop, k: Math.max(vw / qw, vh / qh) * 1.12 };
       if (screenRef.current) screenRef.current.style.transform = quadMatrix(PW, PH, q);
       if (zoomRef.current) zoomRef.current.style.transformOrigin = `${cx}px ${cy}px`;
+      stageTop = docTop(stage);
+      stageH = stage.offsetHeight;
       lastDrawn = -1;
+      lastP = -1; // resizing the canvas cleared it — force a redraw
     };
 
     const draw = (i) => {
@@ -153,35 +159,25 @@ export default function StudioHero() {
       imgs[i] = im;
     }
 
-    const reduce = window.matchMedia?.("(prefers-reduced-motion: reduce)").matches;
-    if (reduce) {
+    if (prefersReducedMotion()) {
       // static: the opened frame with the headline, no scrub, no pinned scroll
       p = 0.15;
       stage.style.height = "auto";
       apply();
       if (headRef.current) { headRef.current.style.opacity = "1"; headRef.current.style.transform = "none"; headRef.current.style.pointerEvents = "auto"; }
-      const onResize = () => { measure(); apply(); };
-      window.addEventListener("resize", onResize);
-      return () => window.removeEventListener("resize", onResize);
+      return subscribe({ measure: () => { measure(); apply(); } });
     }
 
-    const update = () => {
-      raf = 0;
-      const rect = stage.getBoundingClientRect();
-      const total = stage.offsetHeight - window.innerHeight;
-      p = total > 0 ? clamp01(-rect.top / total) : 0;
-      apply();
-    };
-    const onScroll = () => { if (!raf) raf = requestAnimationFrame(update); };
-    const onResize = () => { measure(); onScroll(); };
-    update();
-    window.addEventListener("scroll", onScroll, { passive: true });
-    window.addEventListener("resize", onResize);
-    return () => {
-      window.removeEventListener("scroll", onScroll);
-      window.removeEventListener("resize", onResize);
-      if (raf) cancelAnimationFrame(raf);
-    };
+    return subscribe({
+      measure,
+      update: (y, vh) => {
+        const total = stageH - vh;
+        p = total > 0 ? clamp01((y - stageTop) / total) : 0;
+        if (p === lastP) return; // nothing moved (e.g. scrolling far below)
+        lastP = p;
+        apply();
+      },
+    });
   }, []);
 
   return (

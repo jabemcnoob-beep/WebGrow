@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { subscribe } from "@/lib/scroll";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import { site, nav } from "@/data/site";
@@ -11,11 +12,15 @@ export default function Header() {
   const [hasLogo, setHasLogo] = useState(false);
   const router = useRouter();
 
+  // only re-render when the bar actually crosses the threshold
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 12);
-    onScroll();
-    window.addEventListener("scroll", onScroll, { passive: true });
-    return () => window.removeEventListener("scroll", onScroll);
+    let last = null;
+    return subscribe({
+      update: (y) => {
+        const next = y > 12;
+        if (next !== last) { last = next; setScrolled(next); }
+      },
+    });
   }, []);
 
   // Use /logo.png automatically if the file exists (drop it in /public).

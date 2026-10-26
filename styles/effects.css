@@ -122,26 +122,30 @@
    ------------------------------------------------------------ */
 .fx-grain {
   position: fixed;
-  inset: 0;
+  /* oversized so the shifted layer never shows an edge */
+  inset: -40px;
   z-index: 9000; /* just under the custom cursor (9999) */
   pointer-events: none;
   opacity: 0.05;
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='240' height='240'%3E%3Cfilter id='g'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='240' height='240' filter='url(%23g)'/%3E%3C/svg%3E");
   background-repeat: repeat;
+  /* the noise is rasterized once; moving the layer with transform keeps
+     the flicker on the compositor instead of repainting the viewport */
+  will-change: transform;
   animation: fx-grain-shift 0.9s steps(1, end) infinite;
 }
 /* steps(1, end) holds each frame's offset, so the tile jumps — film flicker.
    Under reduced motion the global animation kill-switch freezes frame one. */
 @keyframes fx-grain-shift {
-  0%    { background-position: 0 0; }
-  12.5% { background-position: -32px 14px; }
-  25%   { background-position: 18px -26px; }
-  37.5% { background-position: -20px -30px; }
-  50%   { background-position: 30px 8px; }
-  62.5% { background-position: -14px 28px; }
-  75%   { background-position: 24px -18px; }
-  87.5% { background-position: -28px -8px; }
-  100%  { background-position: 0 0; }
+  0%    { transform: translate3d(0, 0, 0); }
+  12.5% { transform: translate3d(-32px, 14px, 0); }
+  25%   { transform: translate3d(18px, -26px, 0); }
+  37.5% { transform: translate3d(-20px, -30px, 0); }
+  50%   { transform: translate3d(30px, 8px, 0); }
+  62.5% { transform: translate3d(-14px, 28px, 0); }
+  75%   { transform: translate3d(24px, -18px, 0); }
+  87.5% { transform: translate3d(-28px, -8px, 0); }
+  100%  { transform: translate3d(0, 0, 0); }
 }
 
 /* ------------------------------------------------------------

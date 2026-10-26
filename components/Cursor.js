@@ -28,12 +28,14 @@ export default function Cursor() {
       ry += (y - ry) * 0.16;
       dot.style.transform = `translate(${x}px, ${y}px) translate(-50%, -50%)`;
       ring.style.transform = `translate(${rx}px, ${ry}px) translate(-50%, -50%)`;
-      raf = requestAnimationFrame(loop);
+      // sleep once the ring has caught up; the next mousemove wakes it
+      raf = Math.abs(x - rx) + Math.abs(y - ry) > 0.3 ? requestAnimationFrame(loop) : 0;
     };
 
     const onMove = (e) => {
       x = e.clientX;
       y = e.clientY;
+      if (!raf) raf = requestAnimationFrame(loop);
       if (!seen) {
         seen = true;
         rx = x; ry = y;

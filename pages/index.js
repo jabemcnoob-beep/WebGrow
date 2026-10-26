@@ -9,6 +9,11 @@ import LoopVideo from "@/components/LoopVideo";
 import DeviceShowcase from "@/components/DeviceShowcase";
 import ServicesRail from "@/components/ServicesRail";
 import ReviewsBelt from "@/components/ReviewsBelt";
+import Marquee from "@/components/Marquee";
+import SplitWords from "@/components/SplitWords";
+import InkText from "@/components/InkText";
+import ScrollFrame from "@/components/ScrollFrame";
+import RiseBand from "@/components/RiseBand";
 import { Arrow } from "@/components/Icon";
 import { site, stats, founderQuote, marquee } from "@/data/site";
 
@@ -21,24 +26,18 @@ export default function Home() {
       <StudioHero />
 
       {/* ================= results ticker ================= */}
-      <div className="marquee" aria-hidden>
-        <div className="marquee-track">
-          {[...marquee, ...marquee].map((m, i) => (
-            <span className="marquee-item" key={i}>{m}</span>
-          ))}
-        </div>
-      </div>
+      <Marquee items={marquee} />
 
       {/* ================= ACT 2 — it starts on paper ================= */}
       <section>
         <div className="container ph-split">
-          <Reveal className="ph-frame">
+          <ScrollFrame>
             <DriftImage src="/media/desk-sketches.jpg" alt="Hand-drawn website wireframes in a sketchbook next to a laptop" />
             <span className="ph-tag">Every site starts here</span>
-          </Reveal>
+          </ScrollFrame>
           <Reveal className="ph-copy" delay={80}>
             <span className="eyebrow">How we work</span>
-            <h2>Designed by hand. <span className="gradient-text">Built to perform.</span></h2>
+            <SplitWords parts={["Designed by hand.", { accent: "Built to perform." }]} />
             <p className="lead">
               No templates and no page builders. Every {site.name} site is sketched around your
               customers first, then hand-coded so it loads fast and shows up on Google.
@@ -55,21 +54,21 @@ export default function Home() {
       </section>
 
       {/* ================= ACT 3 — real work on every screen (black band) ================= */}
-      <div className="theme-dark">
+      <RiseBand className="theme-dark">
         <DeviceShowcase />
-      </div>
+      </RiseBand>
 
       {/* ================= ACT 4 — your customers are on their phones ================= */}
       <section>
         <div className="container">
           <div className="ph-split flip">
-            <Reveal className="ph-frame">
+            <ScrollFrame>
               <LoopVideo src="/media/cafe-owner.mp4" poster="/media/cafe-owner.jpg" alt="A cafe owner smiling at her phone behind the counter" range={10} />
               <span className="ph-tag">Built for local business</span>
-            </Reveal>
+            </ScrollFrame>
             <Reveal className="ph-copy" delay={80}>
               <span className="eyebrow">Why it matters</span>
-              <h2>Your next customer is <span className="gradient-text">searching right now.</span></h2>
+              <SplitWords parts={["Your next customer is", { accent: "searching right now." }]} />
               <p className="lead">
                 They're on their phone, comparing you to the shop down the road. The business with
                 the fast, trustworthy, easy-to-book website wins — we make sure that's you.
@@ -96,7 +95,7 @@ export default function Home() {
         <div className="container">
           <Reveal className="ph-card">
             <span className="eyebrow">Local studio · {site.area}</span>
-            <h2>Made in the Verde Valley.</h2>
+            <SplitWords parts={["Made in the Verde Valley."]} />
             <p>
               {site.name} is {site.founder}'s studio — one person, start to finish, building sites
               for Sedona, Cottonwood, Camp Verde and businesses well beyond Arizona. You talk to
@@ -114,7 +113,7 @@ export default function Home() {
         <div className="container">
           <div className="section-head">
             <span className="eyebrow">Loved by owners</span>
-            <h2>Five stars, <span className="gradient-text">every time</span>.</h2>
+            <SplitWords parts={["Five stars,", { accent: "every time." }]} />
           </div>
         </div>
         <ReviewsBelt />
@@ -126,10 +125,10 @@ export default function Home() {
       {/* ================= founder quote ================= */}
       <section style={{ paddingTop: 0 }}>
         <div className="container">
-          <Reveal className="center">
-            <p className="quote-xl">“{founderQuote.quote}”</p>
+          <div className="center">
+            <InkText className="quote-xl" text={`“${founderQuote.quote}”`} />
             <p className="eyebrow" style={{ justifyContent: "center" }}>— {founderQuote.by}</p>
-          </Reveal>
+          </div>
         </div>
       </section>
 
@@ -141,7 +140,7 @@ export default function Home() {
         <div className="container">
           <Reveal>
             <span className="eyebrow" style={{ justifyContent: "center" }}>Let's talk</span>
-            <h2>Your website should be your best salesperson.</h2>
+            <SplitWords parts={["Your website should be your best salesperson."]} />
             <p className="lead" style={{ maxWidth: "50ch" }}>
               Tell us about your business and {site.founder} will personally craft a quote. Pay half
               to start, half when you love it.

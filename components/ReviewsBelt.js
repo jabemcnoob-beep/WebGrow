@@ -1,4 +1,5 @@
 import { useEffect, useRef } from "react";
+import { subscribe, docTop } from "@/lib/scroll";
 import { reviews } from "@/data/site";
 
 function Chip({ r }) {
@@ -30,19 +31,17 @@ export default function ReviewsBelt() {
     const reduce = window.matchMedia?.("(prefers-reduced-motion: reduce)").matches;
     if (reduce) return;
 
-    let lastY = window.scrollY;
-    let skew = 0;
-    let raf = 0;
-    const loop = () => {
-      const y = window.scrollY;
-      const vel = y - lastY;
-      lastY = y;
-      skew += (Math.max(-6, Math.min(6, vel * 0.12)) - skew) * 0.1;
-      el.style.transform = `skewY(${skew}deg)`;
-      raf = requestAnimationFrame(loop);
-    };
-    raf = requestAnimationFrame(loop);
-    return () => cancelAnimationFrame(raf);
+    let top = 0, h = 0, skew = 0;
+    return subscribe({
+      measure: () => { top = docTop(el); h = el.offsetHeight; },
+      update: (y, vh, vel) => {
+        if (y + vh < top || y > top + h) return; // off screen
+        const target = Math.max(-6, Math.min(6, vel * 0.12));
+        if (Math.abs(target - skew) < 0.01 && Math.abs(skew) < 0.01) return;
+        skew += (target - skew) * 0.2;
+        el.style.transform = `skewY(${skew.toFixed(3)}deg)`;
+      },
+    });
   }, []);
 
   const row = (list, cls) => (

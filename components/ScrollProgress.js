@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from "react";
+import { subscribe } from "@/lib/scroll";
 
 const clamp01 = (v) => Math.min(1, Math.max(0, v));
 
@@ -20,30 +21,14 @@ export default function ScrollProgress() {
       return;
     }
 
-    let raf = 0;
-    const apply = () => {
-      const doc = document.documentElement;
-      const total = doc.scrollHeight - window.innerHeight;
-      const p = total > 0 ? clamp01(window.scrollY / total) : 0;
-      bar.style.transform = `scaleX(${p.toFixed(4)})`;
-    };
-    const onScroll = () => {
-      if (!raf) {
-        raf = requestAnimationFrame(() => {
-          raf = 0;
-          apply();
-        });
-      }
-    };
-
-    apply();
-    window.addEventListener("scroll", onScroll, { passive: true });
-    window.addEventListener("resize", onScroll, { passive: true });
-    return () => {
-      window.removeEventListener("scroll", onScroll);
-      window.removeEventListener("resize", onScroll);
-      if (raf) cancelAnimationFrame(raf);
-    };
+    let total = 1;
+    return subscribe({
+      measure: () => { total = document.documentElement.scrollHeight - window.innerHeight; },
+      update: (y) => {
+        const p = total > 0 ? clamp01(y / total) : 0;
+        bar.style.transform = `scaleX(${p.toFixed(4)})`;
+      },
+    });
   }, []);
 
   if (hidden) return null;

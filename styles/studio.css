@@ -281,3 +281,41 @@
   transition: opacity 0.7s linear;
 }
 .ph-finale .lv { inset: 0; }
+
+/* ============================================================
+   Scroll effects (SplitWords, InkText, ScrollFrame, RiseBand,
+   FooterShout) — all driven by lib/scroll.js or a one-shot
+   IntersectionObserver; transform/opacity only
+   ============================================================ */
+
+/* words rise out of a mask; padding keeps descenders inside it */
+.split-words .sw { display: inline-block; overflow: hidden; vertical-align: top; padding-bottom: 0.1em; margin-bottom: -0.1em; }
+.split-words .sw-in {
+  display: inline-block;
+  transform: translate3d(0, 110%, 0);
+  transition: transform 0.95s cubic-bezier(0.2, 0.75, 0.1, 1);
+}
+.split-words.is-on .sw-in { transform: none; }
+
+/* founder quote inks in word by word */
+.ink-text .ink-w { color: rgba(var(--ink-rgb), 0.16); transition: color 0.4s ease; }
+.ink-text .ink-w.on { color: var(--heading); }
+
+/* photo frames grow from a tilted card */
+.scroll-frame { transform-origin: 50% 85%; will-change: transform, opacity; }
+
+/* the black showcase band rises as a card and widens to full bleed */
+.rise-band {
+  background: var(--bg);
+  border-radius: clamp(22px, 3vw, 40px) clamp(22px, 3vw, 40px) 0 0;
+  overflow: clip;
+  transform-origin: 50% 0;
+}
+
+/* footer wordmark letters climb out of the footer edge */
+.footer .footer-shout { overflow: hidden; padding-bottom: 0.06em; }
+.footer-shout .fs-l { display: inline-block; transform-origin: 0 100%; }
+
+@media (prefers-reduced-motion: reduce) {
+  .ink-text .ink-w { color: var(--heading); }
+}
