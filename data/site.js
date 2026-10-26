@@ -260,7 +260,7 @@ export const pricing = {
       price: "$500",
       tagline: "A high-quality, lightning-fast custom website — designed and built personally for your business, all in one.",
       paymentLink: "https://buy.stripe.com/fZu8wQ7Bh33d94udYQ0oM00",
-      depositLink: "",
+      depositLink: "https://buy.stripe.com/aFaeVebRx9rB2G68Ew0oM03",
       cta: "Get Started",
       featured: false,
       features: [
@@ -277,7 +277,7 @@ export const pricing = {
       price: "$1,000",
       tagline: "Everything in the Custom Website, plus full SEO and a hands-on launch so customers actually find you on Google.",
       paymentLink: "https://buy.stripe.com/fZu9AU08P33d5Si3kc0oM01",
-      depositLink: "",
+      depositLink: "https://buy.stripe.com/4gM14o4p51Z9dkK7As0oM04",
       cta: "Get Started",
       featured: true,
       badge: "Most Popular",
@@ -294,7 +294,7 @@ export const pricing = {
       price: "$5,000",
       tagline: "For ambitious projects — e-commerce, booking systems, or something bigger, built around your exact goals.",
       paymentLink: "https://buy.stripe.com/9B66oIf3J7jt6Wmg6Y0oM02",
-      depositLink: "",
+      depositLink: "https://buy.stripe.com/bJe6oI7Bh6fp3Kag6Y0oM05",
       cta: "Get Started",
       featured: false,
       features: [
