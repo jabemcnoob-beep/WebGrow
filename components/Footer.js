@@ -44,6 +44,7 @@ export default function Footer() {
             <a href={`tel:${site.phone.replace(/-/g, "")}`}>{site.phone}</a>
             <a href={`mailto:${site.email}`}>Email us</a>
             <Link href="/contact">Get a free quote</Link>
+            {site.googleBusiness && <a href={site.googleBusiness} target="_blank" rel="noopener">Find us on Google</a>}
             <span className="footer-area">{site.area}</span>
           </div>
         </div>

@@ -24,7 +24,12 @@ export const site = {
   geo: { lat: 34.7, lng: -111.9 }, // approximate Verde Valley center
   // Real profile URLs (e.g. the Google Business Profile share link). They
   // tell Google which listings belong to WebGrow — only list ones you own.
-  verifiedProfiles: [],
+  // Google Business Profile — share link plus its permanent Knowledge Graph ID
+  googleBusiness: "https://share.google/cim307XmisuuDor9c",
+  verifiedProfiles: [
+    "https://share.google/cim307XmisuuDor9c",
+    "https://www.google.com/search?kgmid=/g/11np_b5xt7",
+  ],
 };
 
 export const nav = [
