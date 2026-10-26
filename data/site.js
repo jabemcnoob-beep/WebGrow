@@ -22,15 +22,9 @@ export const site = {
     "Clarkdale", "Cornville", "Rimrock", "Jerome", "Arizona",
   ],
   geo: { lat: 34.7, lng: -111.9 }, // approximate Verde Valley center
-  // Real profile URLs (Google Business Profile, Instagram, Facebook…). These
-  // tell Google which accounts belong to WebGrow — only list ones you own.
+  // Real profile URLs (e.g. the Google Business Profile share link). They
+  // tell Google which listings belong to WebGrow — only list ones you own.
   verifiedProfiles: [],
-  social: {
-    instagram: "https://instagram.com/webgrow",
-    x: "https://x.com/webgrow",
-    dribbble: "https://dribbble.com/webgrow",
-    linkedin: "https://linkedin.com/company/webgrow",
-  },
 };
 
 export const nav = [

@@ -40,11 +40,11 @@ export default function Footer() {
           </div>
 
           <div>
-            <h4>Connect</h4>
-            <a href={site.social.instagram} target="_blank" rel="noreferrer">Instagram</a>
-            <a href={site.social.x} target="_blank" rel="noreferrer">X / Twitter</a>
-            <a href={site.social.dribbble} target="_blank" rel="noreferrer">Dribbble</a>
-            <a href={site.social.linkedin} target="_blank" rel="noreferrer">LinkedIn</a>
+            <h4>Contact</h4>
+            <a href={`tel:${site.phone.replace(/-/g, "")}`}>{site.phone}</a>
+            <a href={`mailto:${site.email}`}>Email us</a>
+            <Link href="/contact">Get a free quote</Link>
+            <span className="footer-area">{site.area}</span>
           </div>
         </div>
 
