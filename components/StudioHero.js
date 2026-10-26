@@ -263,8 +263,8 @@ export default function StudioHero() {
           </h1>
           <div className="sh-row">
             <p className="lead">
-              Custom, hand-coded sites for Arizona businesses and beyond — fast, found on
-              Google, and designed to turn visitors into customers.
+              Custom, hand-coded websites for Sedona, Cottonwood and Verde Valley businesses —
+              fast, found on Google, and designed to turn visitors into customers.
             </p>
             <div className="sh-ctas">
               <Magnetic><Link href="/contact" className="btn btn-primary btn-lg">Get a free quote <Arrow /></Link></Magnetic>

@@ -33,7 +33,7 @@ export default function Home() {
       <section>
         <div className="container ph-split">
           <ScrollFrame>
-            <DriftImage src="/media/desk-sketches.jpg" alt="Hand-drawn website wireframes in a sketchbook next to a laptop" />
+            <DriftImage src="/media/desk-sketches.webp" alt="Hand-drawn website wireframes in a sketchbook next to a laptop" />
             <span className="ph-tag">Every site starts here</span>
           </ScrollFrame>
           <Reveal className="ph-copy" delay={80}>
@@ -64,7 +64,7 @@ export default function Home() {
         <div className="container">
           <div className="ph-split flip">
             <ScrollFrame>
-              <LoopVideo src="/media/cafe-owner.mp4" poster="/media/cafe-owner.jpg" alt="A cafe owner smiling at her phone behind the counter" range={10} />
+              <LoopVideo src="/media/cafe-owner.mp4" poster="/media/cafe-owner.webp" alt="A cafe owner smiling at her phone behind the counter" range={10} />
               <span className="ph-tag">Built for local business</span>
             </ScrollFrame>
             <Reveal className="ph-copy" delay={80}>
@@ -91,7 +91,7 @@ export default function Home() {
       {/* ================= ACT 5 — local studio, Sedona light ================= */}
       <section className="ph-band" style={{ paddingBlock: 0 }}>
         <div className="ph-media">
-          <LoopVideo src="/media/sedona-window.mp4" poster="/media/sedona-window.jpg" alt="A studio desk with a laptop facing Sedona's red rocks at golden hour" range={12} />
+          <LoopVideo src="/media/sedona-window.mp4" poster="/media/sedona-window.webp" alt="A studio desk with a laptop facing Sedona's red rocks at golden hour" range={12} />
         </div>
         <div className="container">
           <Reveal className="ph-card">
@@ -139,7 +139,7 @@ export default function Home() {
       {/* ================= finale over the prism ================= */}
       <section className="ph-finale">
         <div className="ph-media">
-          <LoopVideo src="/media/prism.mp4" poster="/media/prism.jpg" />
+          <LoopVideo src="/media/prism.mp4" poster="/media/prism.webp" />
         </div>
         <div className="container">
           <Reveal>

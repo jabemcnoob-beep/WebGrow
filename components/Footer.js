@@ -15,7 +15,7 @@ export default function Footer() {
         <div className="footer-grid">
           <div>
             <Link href="/" className="brand">
-              <span className="brand-badge"><img src="/logo.png" alt={site.name} /></span>
+              <span className="brand-badge"><img src="/logo-badge.webp" alt={site.name} width="38" height="38" /></span>
               {site.name}
             </Link>
             <p style={{ marginTop: 16, maxWidth: "38ch" }}>{site.blurb} By {site.founder}.</p>

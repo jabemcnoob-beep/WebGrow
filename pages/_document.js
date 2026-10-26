@@ -1,8 +1,13 @@
 import { Html, Head, Main, NextScript } from "next/document";
-import { site, seo, reviews } from "@/data/site";
+import { site, seo, pricing } from "@/data/site";
 
-// Local-business structured data (JSON-LD) — emitted into every page's HTML
-// so Google can show rich results and understand WebGrow's service area.
+// Business structured data (JSON-LD) — emitted into every page so Google
+// understands who WebGrow is, where it works and what it sells.
+// - Review stars are deliberately NOT marked up here: Google ignores (and
+//   discourages) a business marking up reviews of itself on its own site.
+// - sameAs (social profiles) is only added for real, verified profiles —
+//   list them in site.verifiedProfiles.
+const num = (p) => Number(String(p).replace(/[^0-9.]/g, "")) || undefined;
 const structuredData = {
   "@context": "https://schema.org",
   "@graph": [
@@ -12,36 +17,44 @@ const structuredData = {
       name: site.name,
       alternateName: "WebGrow Web Design",
       description: seo.default.description,
+      slogan: site.tagline,
       url: site.url,
       email: site.email,
       telephone: site.phone,
       image: `${site.url}/og-image.png`,
       logo: `${site.url}/logo.png`,
-      priceRange: "$$",
+      priceRange: "$500–$5,000",
+      currenciesAccepted: "USD",
+      paymentAccepted: "Credit card, Debit card",
       founder: { "@type": "Person", name: site.founder },
-      knowsAbout: ["Web Design", "Website Development", "Local SEO", "Brand Identity"],
+      knowsAbout: ["Web Design", "Website Development", "Local SEO", "Search Engine Optimization", "Responsive Web Design", "E-commerce Websites", "Brand Identity"],
       address: { "@type": "PostalAddress", addressRegion: site.regionCode, addressCountry: "US" },
-      areaServed: site.areaServed.map((a) => ({ "@type": "Place", name: a })),
+      areaServed: site.areaServed.map((a) =>
+        a === site.region ? { "@type": "State", name: a }
+        : a === "Verde Valley" ? { "@type": "Place", name: "Verde Valley, Arizona" }
+        : { "@type": "City", name: `${a}, ${site.regionCode}` }),
       geo: { "@type": "GeoCoordinates", latitude: site.geo.lat, longitude: site.geo.lng },
-      sameAs: Object.values(site.social),
-      aggregateRating: {
-        "@type": "AggregateRating",
-        ratingValue: "5.0",
-        reviewCount: String(reviews.length),
-        bestRating: "5",
+      ...(site.verifiedProfiles?.length ? { sameAs: site.verifiedProfiles } : {}),
+      hasOfferCatalog: {
+        "@type": "OfferCatalog",
+        name: "Website design packages",
+        itemListElement: pricing.tiers.map((t) => ({
+          "@type": "Offer",
+          name: t.name,
+          description: t.tagline,
+          price: num(t.price),
+          priceCurrency: "USD",
+          url: `${site.url}/pricing/`,
+          itemOffered: { "@type": "Service", name: t.name, serviceType: "Web design", provider: { "@id": `${site.url}/#business` } },
+        })),
       },
-      review: reviews.map((r) => ({
-        "@type": "Review",
-        author: { "@type": "Person", name: r.name },
-        reviewRating: { "@type": "Rating", ratingValue: String(r.stars), bestRating: "5" },
-        reviewBody: r.quote,
-      })),
     },
     {
       "@type": "WebSite",
       "@id": `${site.url}/#website`,
       url: site.url,
       name: site.name,
+      inLanguage: "en-US",
       publisher: { "@id": `${site.url}/#business` },
     },
   ],
@@ -51,14 +64,6 @@ export default function Document() {
   return (
     <Html lang="en">
       <Head>
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
-        {/* WebGrow type system:
-            Display/headings — Bricolage Grotesque · Body — Inter · Mono accents — Space Mono */}
-        <link
-          href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=Space+Grotesk:wght@500;700&family=Inter:wght@400;500;600;700&family=Space+Mono:wght@400;700&display=swap"
-          rel="stylesheet"
-        />
         <meta name="theme-color" content="#fafaf8" />
         <meta name="author" content={site.founder} />
 

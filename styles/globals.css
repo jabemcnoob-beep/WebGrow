@@ -38,9 +38,10 @@
   --shadow: 0 24px 70px -28px rgba(14, 14, 16, 0.28);
 
   /* ---- type ---- */
-  --font-display: "Bricolage Grotesque", "Space Grotesk", system-ui, sans-serif;
-  --font-body: "Inter", system-ui, sans-serif;
-  --font-mono: "Space Mono", ui-monospace, monospace;
+  /* --ff-* come from next/font (lib/fonts.js), self-hosted */
+  --font-display: var(--ff-display, "Bricolage Grotesque"), system-ui, sans-serif;
+  --font-body: var(--ff-body, "Inter"), system-ui, sans-serif;
+  --font-mono: var(--ff-mono, "Space Mono"), ui-monospace, monospace;
 
   /* ---- layout ---- */
   --max: 1180px;

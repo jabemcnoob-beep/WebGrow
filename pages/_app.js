@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import Router from "next/router";
+import Head from "next/head";
 import "@/styles/globals.css";
 import "@/styles/effects.css";
 import "@/styles/hero.css";
@@ -7,6 +8,7 @@ import "@/styles/showcase.css";
 import "@/styles/whyus.css";
 import "@/styles/studio.css";
 import Layout from "@/components/Layout";
+import { fontVars } from "@/lib/fonts";
 
 const normalize = (url) => (url.split("?")[0].split("#")[0].replace(/\/+$/, "") || "/");
 
@@ -53,6 +55,9 @@ export default function App({ Component, pageProps }) {
 
   return (
     <Layout>
+      <Head>
+        <style key="font-vars" dangerouslySetInnerHTML={{ __html: fontVars }} />
+      </Head>
       <Component {...pageProps} />
       <div className={`route-wipe ${wipe === "idle" ? "" : wipe}`} aria-hidden />
     </Layout>

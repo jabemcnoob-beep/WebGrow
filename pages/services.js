@@ -24,7 +24,7 @@ export default function Services() {
         </div>
       </section>
 
-      <PageBanner src="/media/services.mp4" poster="/media/services.jpg" alt="A designer sketching website wireframes in a notebook" tag="Every site starts on paper" focus="68% 60%" />
+      <PageBanner src="/media/services.mp4" poster="/media/services.webp" alt="A designer sketching website wireframes in a notebook" tag="Every site starts on paper" focus="68% 60%" />
 
       {/* ---------------- WHAT WE DELIVER ---------------- */}
       <section style={{ paddingTop: 0 }}>

@@ -49,10 +49,20 @@ function Invoice({ tier }) {
   );
 }
 
+// the FAQ below, as structured data search engines can read directly
+const faqLd = {
+  "@type": "FAQPage",
+  mainEntity: pricing.faqs.map((f) => ({
+    "@type": "Question",
+    name: f.q,
+    acceptedAnswer: { "@type": "Answer", text: f.a },
+  })),
+};
+
 export default function Pricing() {
   return (
     <>
-      <Seo path="/pricing" />
+      <Seo path="/pricing" jsonLd={faqLd} />
 
       <section className="page-hero center">
         <div className="container">

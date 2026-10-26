@@ -105,7 +105,7 @@ export default function Contact() {
         </div>
       </section>
 
-      <PageBanner src="/media/contact.mp4" poster="/media/contact.jpg" alt="A coffee mug, notebook and phone on a sunny desk" tag="Let’s talk over coffee" focus="66% 45%" />
+      <PageBanner src="/media/contact.mp4" poster="/media/contact.webp" alt="A coffee mug, notebook and phone on a sunny desk" tag="Let’s talk over coffee" focus="66% 45%" />
     </>
   );
 }

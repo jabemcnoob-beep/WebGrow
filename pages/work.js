@@ -23,7 +23,7 @@ export default function Work() {
         </div>
       </section>
 
-      <PageBanner src="/media/work.mp4" poster="/media/work.jpg" alt="A hand scrolling a local business website on a phone" tag="Built for phones first" focus="74% 50%" />
+      <PageBanner src="/media/work.mp4" poster="/media/work.webp" alt="A hand scrolling a local business website on a phone" tag="Built for phones first" focus="74% 50%" />
 
       <section style={{ paddingTop: 0 }}>
         <div className="container">

@@ -22,7 +22,7 @@ export default function QuoteSection() {
     <section id="free-quote" className="quote-sec">
       <div className="container ph-split flip">
         <ScrollFrame>
-          <LoopVideo src="/media/contact.mp4" poster="/media/contact.jpg" alt="A coffee mug, notebook and phone on a sunny desk" range={10} />
+          <LoopVideo src="/media/contact.mp4" poster="/media/contact.webp" alt="A coffee mug, notebook and phone on a sunny desk" range={10} />
           <span className="ph-tag">Free · no obligation</span>
         </ScrollFrame>
         <Reveal className="ph-copy" delay={80}>

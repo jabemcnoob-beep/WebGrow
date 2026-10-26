@@ -23,11 +23,11 @@ export default function Header() {
     });
   }, []);
 
-  // Use /logo.png automatically if the file exists (drop it in /public).
+  // Use the logo badge automatically if the file exists (drop it in /public).
   useEffect(() => {
     const img = new Image();
     img.onload = () => setHasLogo(true);
-    img.src = "/logo.png";
+    img.src = "/logo-badge.webp";
   }, []);
 
   // close the menu on route change + lock page scroll while open
@@ -48,7 +48,7 @@ export default function Header() {
         <div className="container">
           <Link href="/" className="brand" aria-label={`${site.name} home`} style={{ position: "relative", zIndex: 101 }}>
             {hasLogo ? (
-              <span className="brand-badge"><img src="/logo.png" alt={site.name} /></span>
+              <span className="brand-badge"><img src="/logo-badge.webp" alt={site.name} width="38" height="38" /></span>
             ) : (
               <span className="dot" />
             )}

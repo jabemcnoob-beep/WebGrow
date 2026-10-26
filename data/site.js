@@ -22,6 +22,9 @@ export const site = {
     "Clarkdale", "Cornville", "Rimrock", "Jerome", "Arizona",
   ],
   geo: { lat: 34.7, lng: -111.9 }, // approximate Verde Valley center
+  // Real profile URLs (Google Business Profile, Instagram, Facebook…). These
+  // tell Google which accounts belong to WebGrow — only list ones you own.
+  verifiedProfiles: [],
   social: {
     instagram: "https://instagram.com/webgrow",
     x: "https://x.com/webgrow",
@@ -160,8 +163,8 @@ export const work = [
   {
     title: "Pasture & Paw",
     url: "https://pasture-paw.com",
-    image: "/work-pasture-paw.jpg",
-    mobileImage: "/media/pasture-paw-mobile.jpg", // real phone layout, used where a phone-sized view fits better
+    image: "/work-pasture-paw.webp",
+    mobileImage: "/media/pasture-paw-mobile.webp", // real phone layout, used where a phone-sized view fits better
     tags: ["Pet & Ranch Sitting", "Built from scratch", "Booking & Local SEO"],
     summary: "Built from scratch for owner Ten Rendon's pet, horse & ranch-sitting business in New River, Arizona — a warm, photography-forward site with clear rates, a step-by-step booking request, and local SEO reaching towns across North Phoenix.",
     // metrics intentionally omitted until real numbers are provided
@@ -169,7 +172,7 @@ export const work = [
   {
     title: "AZ Wildfire Mitigation",
     url: "https://www.azwildfiremitigation.com",
-    image: "/work-az-wildfire.jpg",
+    image: "/work-az-wildfire.webp",
     tags: ["Wildfire Mitigation", "Built from scratch", "Local SEO"],
     summary: "Built from scratch for a wildfire-mitigation and tree-service company in Flagstaff — a bold, high-impact site that earns instant trust and turns Northern Arizona homeowners into booked jobs.",
     // metrics intentionally omitted until real numbers are provided
@@ -177,7 +180,7 @@ export const work = [
   {
     title: "Best Clean Pros",
     url: "https://www.bestcleanpros.com",
-    image: "/work-best-clean-pros.jpg",
+    image: "/work-best-clean-pros.webp",
     tags: ["Cleaning Service", "Built from scratch", "Booking & SEO"],
     summary: "A bright, modern website for a residential and commercial cleaning company — built from the ground up to turn local searches into booked cleanings, with clear services, trust-building design, and an easy path to a quote.",
     // metrics intentionally omitted until real numbers are provided
@@ -185,7 +188,7 @@ export const work = [
   {
     title: "The Handy Firemen",
     url: "https://thehandyfiremen.com",
-    image: "/work-handy-firemen.jpg",
+    image: "/work-handy-firemen.webp",
     tags: ["Handyman Services", "Redesign", "Local SEO"],
     summary: "A complete website redesign engineered for higher traffic and effortless smoothness — we transformed a low-quality, outdated site into a fast, polished online presence that wins trust and books jobs.",
     metrics: [ { num: "+200%", lbl: "Sales rate" }, { num: "5%+", lbl: "Conversion rate" } ],
@@ -193,7 +196,7 @@ export const work = [
   {
     title: "Almost Sedona",
     url: "https://almostsedona.com",
-    image: "/work-almost-sedona.jpg",
+    image: "/work-almost-sedona.webp",
     tags: ["Airbnb Business", "Built from scratch", "Bookings"],
     summary: "Built their website entirely from scratch — a modern, one-of-a-kind design crafted to captivate tourists and travelers from afar and turn curious browsers into booked stays.",
     metrics: [ { num: "5%+", lbl: "Conversion rate" }, { num: "↑", lbl: "Booked stays" } ],
@@ -339,7 +342,7 @@ export const seo = {
   },
   "/": {
     title: "Verde Valley Web Design That Grows Your Business | WebGrow",
-    description: "Custom, high-converting websites for Verde Valley & Arizona businesses. WebGrow makes your site your #1 salesperson with modern design and local SEO. Free quote.",
+    description: "Custom, hand-coded websites for Sedona, Cottonwood and Verde Valley businesses — fast, built for local SEO, and paid half now, half at launch. Free quote.",
     image: "/og-image.png",
   },
   "/about": {
@@ -348,7 +351,7 @@ export const seo = {
     image: "/og-about.png",
   },
   "/why-us": {
-    title: "Why WebGrow | Web Design Built to Rank on Google",
+    title: "Why WebGrow | Web Design Built to Rank on Google, AZ",
     description: "Custom web design with SEO built in from day one — WebGrow pushes Verde Valley & Arizona businesses up Google, so customers find you first and buy.",
     image: "/og-about.png",
   },
@@ -363,8 +366,8 @@ export const seo = {
     image: "/og-examples.png",
   },
   "/work": {
-    title: "Our Work | Verde Valley & Arizona Websites — WebGrow",
-    description: "See real websites WebGrow built for Arizona businesses — The Handy Firemen, Almost Sedona and Best Clean Pros — and the growth that followed. View our work.",
+    title: "Our Work | Arizona Business Websites — WebGrow",
+    description: "Real websites WebGrow built for Arizona businesses — Pasture & Paw, AZ Wildfire Mitigation, Best Clean Pros, The Handy Firemen and Almost Sedona.",
     image: "/og-work.png",
   },
   "/reviews": {
@@ -373,8 +376,8 @@ export const seo = {
     image: "/og-reviews.png",
   },
   "/pricing": {
-    title: "Web Design Pricing for Arizona Businesses | WebGrow",
-    description: "Transparent web design pricing for Verde Valley and Arizona businesses — custom sites from $500, plus SEO and launch packages. No templates, no hidden fees.",
+    title: "Web Design Pricing | Custom Sites from $500 — WebGrow",
+    description: "Transparent web design pricing for Arizona businesses: custom sites from $500, SEO & launch packages and custom builds. Pay 50% to start, 50% at launch.",
     image: "/og-pricing.png",
   },
   "/contact": {

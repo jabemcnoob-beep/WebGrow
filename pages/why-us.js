@@ -61,7 +61,7 @@ export default function WhyUs() {
         </div>
       </section>
 
-      <PageBanner src="/media/why-us.mp4" poster="/media/why-us.jpg" alt="Golden hour over the Verde Valley and Sedona red rocks" tag="Rooted in the Verde Valley" focus="62% 50%" />
+      <PageBanner src="/media/why-us.mp4" poster="/media/why-us.webp" alt="Golden hour over the Verde Valley and Sedona red rocks" tag="Rooted in the Verde Valley" focus="62% 50%" />
 
       {/* ---------------- VALUES ---------------- */}
       <section style={{ paddingTop: 0 }}>
